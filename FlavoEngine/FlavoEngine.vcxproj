@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Camera.h" />
+    <ClInclude Include="include\Color.h" />
+    <ClInclude Include="include\Core.h" />
+    <ClInclude Include="include\Debug.h" />
+    <ClInclude Include="include\EntityX.h" />
+    <ClInclude Include="include\entityx\3rdparty\catch.hpp" />
+    <ClInclude Include="include\entityx\3rdparty\simplesignal.h" />
+    <ClInclude Include="include\entityx\config.h" />
+    <ClInclude Include="include\entityx\deps\Dependencies.h" />
+    <ClInclude Include="include\entityx\Entity.h" />
+    <ClInclude Include="include\entityx\Event.h" />
+    <ClInclude Include="include\entityx\help\NonCopyable.h" />
+    <ClInclude Include="include\entityx\help\Pool.h" />
+    <ClInclude Include="include\entityx\help\Timer.h" />
+    <ClInclude Include="include\entityx\quick.h" />
+    <ClInclude Include="include\entityx\System.h" />
+    <ClInclude Include="include\entityx\tags\TagsComponent.h" />
+    <ClInclude Include="include\Framework\FDraw.h" />
+    <ClInclude Include="include\Framework\FUtils.h" />
+    <ClInclude Include="include\Framework\FWindow.h" />
+    <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\InternalComponent.h" />
+    <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\Maths.h" />
+    <ClInclude Include="include\Mesh.h" />
+    <ClInclude Include="include\MeshRenderer.h" />
+    <ClInclude Include="include\OpenGL\assimp\ai_assert.h" />
+    <ClInclude Include="include\OpenGL\assimp\anim.h" />
+    <ClInclude Include="include\OpenGL\assimp\camera.h" />
+    <ClInclude Include="include\OpenGL\assimp\cexport.h" />
+    <ClInclude Include="include\OpenGL\assimp\cfileio.h" />
+    <ClInclude Include="include\OpenGL\assimp\cimport.h" />
+    <ClInclude Include="include\OpenGL\assimp\color4.h" />
+    <ClInclude Include="include\OpenGL\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="include\OpenGL\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="include\OpenGL\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="include\OpenGL\assimp\config.h" />
+    <ClInclude Include="include\OpenGL\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\defs.h" />
+    <ClInclude Include="include\OpenGL\assimp\Exporter.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\Importer.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\importerdesc.h" />
+    <ClInclude Include="include\OpenGL\assimp\IOStream.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\IOSystem.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\light.h" />
+    <ClInclude Include="include\OpenGL\assimp\Logger.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\LogStream.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\material.h" />
+    <ClInclude Include="include\OpenGL\assimp\matrix3x3.h" />
+    <ClInclude Include="include\OpenGL\assimp\matrix4x4.h" />
+    <ClInclude Include="include\OpenGL\assimp\mesh.h" />
+    <ClInclude Include="include\OpenGL\assimp\metadata.h" />
+    <ClInclude Include="include\OpenGL\assimp\NullLogger.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="include\OpenGL\assimp\postprocess.h" />
+    <ClInclude Include="include\OpenGL\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="include\OpenGL\assimp\quaternion.h" />
+    <ClInclude Include="include\OpenGL\assimp\scene.h" />
+    <ClInclude Include="include\OpenGL\assimp\texture.h" />
+    <ClInclude Include="include\OpenGL\assimp\types.h" />
+    <ClInclude Include="include\OpenGL\assimp\vector2.h" />
+    <ClInclude Include="include\OpenGL\assimp\vector3.h" />
+    <ClInclude Include="include\OpenGL\assimp\version.h" />
+    <ClInclude Include="include\OpenGL\glad\glad.h" />
+    <ClInclude Include="include\OpenGL\GLFW\glfw3.h" />
+    <ClInclude Include="include\OpenGL\GLFW\glfw3native.h" />
+    <ClInclude Include="include\OpenGL\glm\common.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\compute_vector_relational.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\qualifier.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\setup.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_float.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_gentype.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_half.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_int.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat2x2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat2x3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat2x4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat3x2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat3x3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat3x4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat4x2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat4x3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_mat4x4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_vec.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_vec1.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_vec2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_vec3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\type_vec4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\_features.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\_fixes.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\_noise.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\_swizzle.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\_swizzle_func.hpp" />
+    <ClInclude Include="include\OpenGL\glm\detail\_vectorize.hpp" />
+    <ClInclude Include="include\OpenGL\glm\exponential.hpp" />
+    <ClInclude Include="include\OpenGL\glm\ext.hpp" />
+    <ClInclude Include="include\OpenGL\glm\fwd.hpp" />
+    <ClInclude Include="include\OpenGL\glm\geometric.hpp" />
+    <ClInclude Include="include\OpenGL\glm\glm.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\bitfield.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\color_space.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\constants.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\epsilon.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\integer.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\matrix_access.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\matrix_integer.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\matrix_inverse.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\matrix_transform.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\noise.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\packing.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\quaternion.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\random.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\reciprocal.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\round.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\type_aligned.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\type_precision.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\type_ptr.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\ulp.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtc\vec1.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\associated_min_max.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\bit.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\closest_point.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\color_encoding.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\color_space.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\color_space_YCoCg.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\common.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\compatibility.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\component_wise.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\dual_quaternion.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\euler_angles.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\extend.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\extended_min_max.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\exterior_product.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\fast_exponential.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\fast_square_root.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\fast_trigonometry.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\functions.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\gradient_paint.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\handed_coordinate_space.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\hash.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\integer.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\intersect.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\io.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\log_base.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_cross_product.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_decompose.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_factorisation.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_interpolation.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_major_storage.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_operation.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_query.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\matrix_transform_2d.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\mixed_product.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\norm.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\normal.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\normalize_dot.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\number_precision.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\optimum_pow.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\orthonormalize.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\perpendicular.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\polar_coordinates.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\projection.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\quaternion.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\range.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\raw_data.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\rotate_normalized_axis.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\rotate_vector.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\scalar_multiplication.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\scalar_relational.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\spline.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\std_based_type.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\string_cast.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\transform.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\transform2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\type_aligned.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\type_trait.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\vector_angle.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\vector_query.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\vec_swizzle.hpp" />
+    <ClInclude Include="include\OpenGL\glm\gtx\wrap.hpp" />
+    <ClInclude Include="include\OpenGL\glm\integer.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat2x2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat2x3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat2x4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat3x2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat3x3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat3x4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat4x2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat4x3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\mat4x4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\matrix.hpp" />
+    <ClInclude Include="include\OpenGL\glm\packing.hpp" />
+    <ClInclude Include="include\OpenGL\glm\simd\common.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\exponential.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\geometric.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\integer.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\matrix.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\packing.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\platform.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\trigonometric.h" />
+    <ClInclude Include="include\OpenGL\glm\simd\vector_relational.h" />
+    <ClInclude Include="include\OpenGL\glm\trigonometric.hpp" />
+    <ClInclude Include="include\OpenGL\glm\vec2.hpp" />
+    <ClInclude Include="include\OpenGL\glm\vec3.hpp" />
+    <ClInclude Include="include\OpenGL\glm\vec4.hpp" />
+    <ClInclude Include="include\OpenGL\glm\vector_relational.hpp" />
+    <ClInclude Include="include\OpenGL\KHR\khrplatform.h" />
+    <ClInclude Include="include\OpenGL\stb_image.h" />
+    <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\SceneManager.h" />
+    <ClInclude Include="include\SceneObject.h" />
+    <ClInclude Include="include\SceneObjectHandle.h" />
+    <ClInclude Include="include\Systems\GraphicSystem.h" />
+    <ClInclude Include="include\Systems\InputSystem.h" />
+    <ClInclude Include="include\Systems\TransformSystem.h" />
+    <ClInclude Include="include\Systems\UserSystem.h" />
+    <ClInclude Include="include\Transform.h" />
+    <ClInclude Include="include\UserComponent.h" />
+    <ClInclude Include="include\Vector3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\OpenGL\glm\detail\dummy.cpp" />
+    <ClCompile Include="include\OpenGL\glm\detail\glm.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Color.cpp" />
+    <ClCompile Include="src\Core.cpp" />
+    <ClCompile Include="src\entityx\Entity.cc" />
+    <ClCompile Include="src\entityx\Event.cc" />
+    <ClCompile Include="src\entityx\help\Pool.cc" />
+    <ClCompile Include="src\entityx\help\Timer.cc" />
+    <ClCompile Include="src\entityx\System.cc" />
+    <ClCompile Include="src\Framework\FDraw.cpp" />
+    <ClCompile Include="src\Framework\FUtils.cpp" />
+    <ClCompile Include="src\Framework\FWindow.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\InternalComponent.cpp" />
+    <ClCompile Include="src\Maths.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\MeshRenderer.cpp" />
+    <ClCompile Include="src\OpenGL\glad.c" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\SceneManager.cpp" />
+    <ClCompile Include="src\SceneObject.cpp" />
+    <ClCompile Include="src\SceneObjectHandle.cpp" />
+    <ClCompile Include="src\Systems\GraphicSystem.cpp" />
+    <ClCompile Include="src\Systems\InputSystem.cpp" />
+    <ClCompile Include="src\Systems\TransformSystem.cpp" />
+    <ClCompile Include="src\Systems\UserSystem.cpp" />
+    <ClCompile Include="src\Transform.cpp" />
+    <ClCompile Include="src\UserComponent.cpp" />
+    <ClCompile Include="src\Vector3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="include\OpenGL\assimp\color4.inl" />
+    <None Include="include\OpenGL\assimp\material.inl" />
+    <None Include="include\OpenGL\assimp\matrix3x3.inl" />
+    <None Include="include\OpenGL\assimp\matrix4x4.inl" />
+    <None Include="include\OpenGL\assimp\quaternion.inl" />
+    <None Include="include\OpenGL\assimp\vector2.inl" />
+    <None Include="include\OpenGL\assimp\vector3.inl" />
+    <None Include="include\OpenGL\glm\detail\func_common.inl" />
+    <None Include="include\OpenGL\glm\detail\func_common_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_exponential.inl" />
+    <None Include="include\OpenGL\glm\detail\func_exponential_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_geometric.inl" />
+    <None Include="include\OpenGL\glm\detail\func_geometric_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_integer.inl" />
+    <None Include="include\OpenGL\glm\detail\func_integer_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_matrix.inl" />
+    <None Include="include\OpenGL\glm\detail\func_matrix_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_packing.inl" />
+    <None Include="include\OpenGL\glm\detail\func_packing_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_trigonometric.inl" />
+    <None Include="include\OpenGL\glm\detail\func_trigonometric_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\func_vector_relational.inl" />
+    <None Include="include\OpenGL\glm\detail\func_vector_relational_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\type_gentype.inl" />
+    <None Include="include\OpenGL\glm\detail\type_half.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat2x2.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat2x3.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat2x4.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat3x2.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat3x3.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat3x4.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat4x2.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat4x3.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat4x4.inl" />
+    <None Include="include\OpenGL\glm\detail\type_mat4x4_simd.inl" />
+    <None Include="include\OpenGL\glm\detail\type_vec.inl" />
+    <None Include="include\OpenGL\glm\detail\type_vec1.inl" />
+    <None Include="include\OpenGL\glm\detail\type_vec2.inl" />
+    <None Include="include\OpenGL\glm\detail\type_vec3.inl" />
+    <None Include="include\OpenGL\glm\detail\type_vec4.inl" />
+    <None Include="include\OpenGL\glm\detail\type_vec4_simd.inl" />
+    <None Include="include\OpenGL\glm\gtc\bitfield.inl" />
+    <None Include="include\OpenGL\glm\gtc\color_space.inl" />
+    <None Include="include\OpenGL\glm\gtc\constants.inl" />
+    <None Include="include\OpenGL\glm\gtc\epsilon.inl" />
+    <None Include="include\OpenGL\glm\gtc\integer.inl" />
+    <None Include="include\OpenGL\glm\gtc\matrix_access.inl" />
+    <None Include="include\OpenGL\glm\gtc\matrix_inverse.inl" />
+    <None Include="include\OpenGL\glm\gtc\matrix_transform.inl" />
+    <None Include="include\OpenGL\glm\gtc\noise.inl" />
+    <None Include="include\OpenGL\glm\gtc\packing.inl" />
+    <None Include="include\OpenGL\glm\gtc\quaternion.inl" />
+    <None Include="include\OpenGL\glm\gtc\quaternion_simd.inl" />
+    <None Include="include\OpenGL\glm\gtc\random.inl" />
+    <None Include="include\OpenGL\glm\gtc\reciprocal.inl" />
+    <None Include="include\OpenGL\glm\gtc\round.inl" />
+    <None Include="include\OpenGL\glm\gtc\type_precision.inl" />
+    <None Include="include\OpenGL\glm\gtc\type_ptr.inl" />
+    <None Include="include\OpenGL\glm\gtc\ulp.inl" />
+    <None Include="include\OpenGL\glm\gtc\vec1.inl" />
+    <None Include="include\OpenGL\glm\gtx\associated_min_max.inl" />
+    <None Include="include\OpenGL\glm\gtx\bit.inl" />
+    <None Include="include\OpenGL\glm\gtx\closest_point.inl" />
+    <None Include="include\OpenGL\glm\gtx\color_encoding.inl" />
+    <None Include="include\OpenGL\glm\gtx\color_space.inl" />
+    <None Include="include\OpenGL\glm\gtx\color_space_YCoCg.inl" />
+    <None Include="include\OpenGL\glm\gtx\common.inl" />
+    <None Include="include\OpenGL\glm\gtx\compatibility.inl" />
+    <None Include="include\OpenGL\glm\gtx\component_wise.inl" />
+    <None Include="include\OpenGL\glm\gtx\dual_quaternion.inl" />
+    <None Include="include\OpenGL\glm\gtx\euler_angles.inl" />
+    <None Include="include\OpenGL\glm\gtx\extend.inl" />
+    <None Include="include\OpenGL\glm\gtx\extended_min_max.inl" />
+    <None Include="include\OpenGL\glm\gtx\exterior_product.inl" />
+    <None Include="include\OpenGL\glm\gtx\fast_exponential.inl" />
+    <None Include="include\OpenGL\glm\gtx\fast_square_root.inl" />
+    <None Include="include\OpenGL\glm\gtx\fast_trigonometry.inl" />
+    <None Include="include\OpenGL\glm\gtx\float_notmalize.inl" />
+    <None Include="include\OpenGL\glm\gtx\functions.inl" />
+    <None Include="include\OpenGL\glm\gtx\gradient_paint.inl" />
+    <None Include="include\OpenGL\glm\gtx\handed_coordinate_space.inl" />
+    <None Include="include\OpenGL\glm\gtx\hash.inl" />
+    <None Include="include\OpenGL\glm\gtx\integer.inl" />
+    <None Include="include\OpenGL\glm\gtx\intersect.inl" />
+    <None Include="include\OpenGL\glm\gtx\io.inl" />
+    <None Include="include\OpenGL\glm\gtx\log_base.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_cross_product.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_decompose.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_factorisation.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_interpolation.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_major_storage.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_operation.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_query.inl" />
+    <None Include="include\OpenGL\glm\gtx\matrix_transform_2d.inl" />
+    <None Include="include\OpenGL\glm\gtx\mixed_product.inl" />
+    <None Include="include\OpenGL\glm\gtx\norm.inl" />
+    <None Include="include\OpenGL\glm\gtx\normal.inl" />
+    <None Include="include\OpenGL\glm\gtx\normalize_dot.inl" />
+    <None Include="include\OpenGL\glm\gtx\number_precision.inl" />
+    <None Include="include\OpenGL\glm\gtx\optimum_pow.inl" />
+    <None Include="include\OpenGL\glm\gtx\orthonormalize.inl" />
+    <None Include="include\OpenGL\glm\gtx\perpendicular.inl" />
+    <None Include="include\OpenGL\glm\gtx\polar_coordinates.inl" />
+    <None Include="include\OpenGL\glm\gtx\projection.inl" />
+    <None Include="include\OpenGL\glm\gtx\quaternion.inl" />
+    <None Include="include\OpenGL\glm\gtx\raw_data.inl" />
+    <None Include="include\OpenGL\glm\gtx\rotate_normalized_axis.inl" />
+    <None Include="include\OpenGL\glm\gtx\rotate_vector.inl" />
+    <None Include="include\OpenGL\glm\gtx\scalar_relational.inl" />
+    <None Include="include\OpenGL\glm\gtx\spline.inl" />
+    <None Include="include\OpenGL\glm\gtx\std_based_type.inl" />
+    <None Include="include\OpenGL\glm\gtx\string_cast.inl" />
+    <None Include="include\OpenGL\glm\gtx\transform.inl" />
+    <None Include="include\OpenGL\glm\gtx\transform2.inl" />
+    <None Include="include\OpenGL\glm\gtx\type_aligned.inl" />
+    <None Include="include\OpenGL\glm\gtx\type_trait.inl" />
+    <None Include="include\OpenGL\glm\gtx\vector_angle.inl" />
+    <None Include="include\OpenGL\glm\gtx\vector_query.inl" />
+    <None Include="include\OpenGL\glm\gtx\wrap.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{7A686138-C783-4AE7-986A-68BA2B66B849}</ProjectGuid>
+    <RootNamespace>FlavoEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <ProjectName>FlavoEngine</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)include\OpenGL;$(ProjectDir)include;$(ProjectDir)include\entityx;$(ProjectDir)include\Framework;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)d</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)include\OpenGL;$(ProjectDir)include;$(ProjectDir)include\entityx;$(ProjectDir)include\Framework;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>FlavoFrameworkd.lib;FlavoCommond.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>assimpd.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>FlavoFramework.lib;FlavoCommon.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>LinkVerbose</ShowProgress>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>assimp.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
