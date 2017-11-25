@@ -38,23 +38,23 @@ void CubeSpawner::configure(EventManager& event_manager) {
 
 void CubeSpawner::receive(const MouseInput& Input) {
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
-	cameraTransform->SetLocalRotation(cameraTransform->LocalRotation + Vector3(Input.Y * 0.01, Input.X * 0.01, 0.0f));
+	cameraTransform->SetLocalRotation(cameraTransform->LocalRotation * glm::quat(glm::vec3(Input.Y * 0.001, -Input.X * 0.001, 0.0f)));
 }
 
 void CubeSpawner::Start() {
-	SceneObjectHandle cube1 = CreateCube(Vector3(12.0, 0.0, 0.0), "../../Resources/Images/brick.jpg");
-	cube1.Get()->Get<Transform>().Get()->SetLocalScale(Vector3(0.2f, 0.2f, 0.2f));
+	SceneObjectHandle cube1 = CreateCube(glm::vec3(12.0, 0.0, 0.0), "../../Resources/Images/brick.jpg");
+	cube1.Get()->Get<Transform>().Get()->SetLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 	Cubes.push_back(cube1);
 
-	SceneObjectHandle cube2 = CreateCube(Vector3(2.0, 0.0, 0.0), "../../Resources/Images/brick.jpg");
-	cube2.Get()->Get<Transform>().Get()->SetLocalRotation(Vector3(0.0f, 45.0f * 0.0174533f, 0.0f));
+	SceneObjectHandle cube2 = CreateCube(glm::vec3(2.0, 0.0, 0.0), "../../Resources/Images/brick.jpg");
+	cube2.Get()->Get<Transform>().Get()->SetLocalRotation(glm::vec3(0.0f, glm::radians(45.0f), 0.0f));
 	Cubes.push_back(cube2);
 
 	SceneManager::GetCurrent()->ChangeParent(cube2.Get()->Get<Transform>(), cube1.Get()->Get<Transform>());
 
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
-	cameraTransform->SetLocalPosition(Vector3(0.0f, 10.0f, 0.0f));
-	cameraTransform->SetLocalRotation(Vector3(-95.0f, 0.0, 0.0f));
+	cameraTransform->SetLocalPosition(glm::vec3(0.0f, 0.0f, -10.0f));
+	cameraTransform->SetLocalRotation(glm::quat(glm::vec3(0.0f, 0.0, 0.0f)));
 
 	StartTime = Framework::FUtils::GetTime();
 }
@@ -62,29 +62,19 @@ void CubeSpawner::Start() {
 void CubeSpawner::Update(double DeltaTime) {
 	float currentTime = Framework::FUtils::GetTime() - StartTime;
 	float trueDelta = (currentTime - StartTime);
-	Cubes[1].Get()->Get<Transform>().Get()->SetLocalPosition(Vector3(cos(trueDelta), 0.0, sin(trueDelta)) * 2.0);
-	Cubes[0].Get()->Get<Transform>().Get()->SetLocalPosition(Vector3(sin(trueDelta), 0.0, cos(trueDelta)) * 12.0);
-	LogB(Cubes[0].Get()->Get<Transform>().Get()->World[3][0]);
+	//Cubes[1].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(cos(trueDelta), 0.0, sin(trueDelta)) * 2.0f);
+	//Cubes[0].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(sin(trueDelta), 0.0, cos(trueDelta)) * 12.0f);
+	Cubes[0].Get()->Get<Transform>().Get()->SetLocalRotation(Cubes[0].Get()->Get<Transform>().Get()->LocalRotation * glm::quat(glm::vec3(0.0f, 0.1f, 0.0f)));
 
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
-	if (Input::IsKeyDown(EKeyCode::W)) {
-		cameraTransform->SetLocalPosition(cameraTransform->LocalPosition + cameraTransform->Forward * 0.1f);
-	}
+	float cameraSpeed = 4.0f * DeltaTime;
+	cameraTransform->SetLocalPosition(cameraTransform->LocalPosition + cameraSpeed * ((cameraTransform->Forward * (float)(Input::IsKeyDown(EKeyCode::W) - Input::IsKeyDown(EKeyCode::S))) + cameraTransform->Right * (float)(Input::IsKeyDown(EKeyCode::D) - Input::IsKeyDown(EKeyCode::A)) + cameraTransform->Up * (float)(Input::IsKeyDown(EKeyCode::Q) - Input::IsKeyDown(EKeyCode::E))));
 
-	if (Input::IsKeyDown(EKeyCode::A)) {
-		cameraTransform->SetLocalPosition(cameraTransform->LocalPosition - cameraTransform->Right * 0.1f);
-	}
-
-	if (Input::IsKeyDown(EKeyCode::S)) {
-		cameraTransform->SetLocalPosition(cameraTransform->LocalPosition - cameraTransform->Forward * 0.1f);
-	}
-
-	if (Input::IsKeyDown(EKeyCode::D)) {
-		cameraTransform->SetLocalPosition(cameraTransform->LocalPosition + cameraTransform->Right * 0.1f);
-	}
+	LogB(glm::eulerAngles(cameraTransform->LocalRotation).x, glm::eulerAngles(cameraTransform->LocalRotation).y, glm::eulerAngles(cameraTransform->LocalRotation).z);
+	LogC(cameraTransform->LocalPosition.x, cameraTransform->LocalPosition.y, cameraTransform->LocalPosition.z);
 }
 
-SceneObjectHandle CubeSpawner::CreateCube(Vector3 pos, std::string texturePath) {
+SceneObjectHandle CubeSpawner::CreateCube(glm::vec3 pos, std::string texturePath) {
 	SceneObjectHandle obj = SceneManager::GetCurrent()->Instantiate();
 	ComponentHandle<Transform> trans = obj.Get()->Get<Transform>();
 	trans.Get()->SetLocalPosition(pos);

@@ -41,14 +41,11 @@ void Engine::TransformSystem::ChangeWorld(ComponentHandle<Transform> TransHandle
 	Transform* trans = TransHandle.Get();
 	if (trans->bIsDirty) {
 		glm::mat4 local = glm::mat4(1.0f);
+		glm::mat4 scaleMat = glm::scale(local, trans->LocalScale);
+		glm::mat4 rotMat = (glm::mat4)trans->LocalRotation;
+		glm::mat4 posMat = glm::translate(local, trans->LocalPosition);
 
-		local = glm::scale(local, glm::vec3(trans->LocalScale.X, trans->LocalScale.Y, trans->LocalScale.Z));
-		local = glm::rotate(local, (float)trans->LocalRotation.X, glm::vec3(1.0f, 0.0f, 0.0f));
-		local = glm::rotate(local, (float)trans->LocalRotation.Y, glm::vec3(0.0f, 1.0f, 0.0f));
-		local = glm::rotate(local, (float)trans->LocalRotation.Z, glm::vec3(0.0f, 0.0f, 1.0f));
-		local = glm::translate(local, glm::vec3(trans->LocalPosition.X, trans->LocalPosition.Y, trans->LocalPosition.Z));
-
-		trans->LocalWorld = local;
+		trans->LocalWorld = posMat * rotMat * scaleMat;
 		if (!trans->Parent.IsDefault() && trans->Parent.IsValid())
 			trans->World = trans->Parent.Get()->World * trans->LocalWorld;
 		else
@@ -61,14 +58,21 @@ void Engine::TransformSystem::ChangeWorld(ComponentHandle<Transform> TransHandle
 
 	//temporary
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
-	glm::vec3 forward = glm::vec3(0.0f);
-	forward.x = cos(glm::radians(trans->Rotation.X)) * cos(glm::radians(trans->Rotation.Y));
-	forward.y = sin(glm::radians(trans->Rotation.X));
-	forward.z = cos(glm::radians(trans->Rotation.X)) * sin(glm::radians(trans->Rotation.Y));
-	forward = glm::normalize(forward);
-	trans->Forward = Vector3(forward.x, forward.y, forward.z);
-	glm::vec3 right = glm::cross(forward, up);
-	trans->Right = Vector3(right.x, right.y, right.z);
+	glm::vec3 forward(0.0f, 0.0f, 1.0f);
+	glm::vec3 right(-1.0f, 0.0f, 0.0f);
+	trans->Forward = glm::vec3(trans->World[2]);
+	trans->Up = glm::vec3(trans->World[1]);
+	trans->Right = -glm::vec3(trans->World[0]);
+
+	//glm::vec3 forward = glm::vec3(0.0f);
+	//forward.x = cos(glm::radians(trans->Rotation.x) * cos(glm::radians(trans->Rotation.y)));
+	//forward.y = sin(glm::radians(trans->Rotation.x));
+	//forward.z = cos(glm::radians(trans->Rotation.x) * sin(glm::radians(trans->Rotation.y)));
+	//forward = glm::normalize(forward);
+
+	//trans->Forward = forward;
+	//trans->Right = glm::cross(forward, up);
+	//trans->Up = -glm::cross(forward, trans->Right);
 
 	for (auto it : trans->Children) {
 		if (!it.second.IsValid())

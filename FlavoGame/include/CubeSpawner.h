@@ -6,6 +6,7 @@
 #include <string>
 #include "Input.h"
 #include <vector>
+#include "OpenGL/glm/glm.hpp"
 
 using namespace Engine;
 class CubeSpawner : public UserComponent, public Receiver<MouseInput>
@@ -31,5 +32,5 @@ public:
 	void receive(const MouseInput& Input);
 
 private:
-	SceneObjectHandle CreateCube(Vector3 pos, std::string texturePath);
+	SceneObjectHandle CreateCube(glm::vec3 pos, std::string texturePath);
 };

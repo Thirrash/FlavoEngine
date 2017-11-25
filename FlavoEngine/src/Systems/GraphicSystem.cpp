@@ -44,14 +44,8 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 void Engine::GraphicSystem::SetTransform(const Engine::Transform& Trans, int ShaderProgram) {
 	//View matrix
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
-	glm::vec3 eye = glm::vec3(cameraTransform->Position.X, cameraTransform->Position.Y, cameraTransform->Position.Z);
-
-	glm::vec3 dir = glm::vec3(0.0f);
-	dir.x = cos(glm::radians(cameraTransform->Rotation.X)) * cos(glm::radians(cameraTransform->Rotation.Y));
-	dir.y = sin(glm::radians(cameraTransform->Rotation.X));
-	dir.z = cos(glm::radians(cameraTransform->Rotation.X)) * sin(glm::radians(cameraTransform->Rotation.Y));
-	dir = glm::normalize(dir);
-
+	glm::vec3 eye = cameraTransform->Position;
+	glm::vec3 dir = glm::normalize(cameraTransform->Forward);
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
 
 	glm::mat4 view = glm::lookAt(eye, eye + dir, up);

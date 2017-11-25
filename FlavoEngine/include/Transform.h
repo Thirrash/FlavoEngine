@@ -5,6 +5,7 @@
 #include <map>
 #include "Vector3.h"
 #include "OpenGL/glm/glm.hpp"
+#include "OpenGL/glm/gtc/quaternion.hpp"
 
 namespace Engine
 {
@@ -18,20 +19,21 @@ namespace Engine
 
 		/*** Fields ***/
 	public:
-		Vector3 Position;
-		Vector3 LocalPosition;
+		glm::vec3 Position;
+		glm::vec3 LocalPosition;
 
-		Vector3 Rotation;
-		Vector3 LocalRotation;
+		glm::quat Rotation;
+		glm::quat LocalRotation;
 
-		Vector3 Scale;
-		Vector3 LocalScale;
+		glm::vec3 Scale;
+		glm::vec3 LocalScale;
 
 		ComponentHandle<Transform> Parent;
 		std::map<Entity, ComponentHandle<Transform>> Children;
 
-		Vector3 Forward;
-		Vector3 Right;
+		glm::vec3 Forward;
+		glm::vec3 Right;
+		glm::vec3 Up;
 
 		glm::mat4x4 World;
 		glm::mat4x4 LocalWorld;
@@ -40,8 +42,8 @@ namespace Engine
 
 		/*** Methods ***/
 	public:
-		void SetLocalPosition(Vector3 Pos);
-		void SetLocalRotation(Vector3 Rot);
-		void SetLocalScale(Vector3 Scale);
+		void SetLocalPosition(glm::vec3 Pos);
+		void SetLocalRotation(glm::quat Rot);
+		void SetLocalScale(glm::vec3 Scale);
 	};
 }
