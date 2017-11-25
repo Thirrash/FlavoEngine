@@ -29,19 +29,21 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 	ComponentHandle<MeshRenderer> rendererHandle;
 	for (Entity entity : es.entities_with_components(transformHandle, rendererHandle)) {
 		if (!transformHandle.IsValid() || !rendererHandle.IsValid()) {
+			LogW("Handle not valid for: ", entity.id().id());
 			continue;
 		}
 
 		MeshRenderer* renderer = rendererHandle.Get();
 		Transform* transform = transformHandle.Get();
-		SetTransform(*transform, renderer->ShaderProgram);
+		SetTransform(transform, renderer->ShaderProgram);
 		RenderMesh(renderer->VAOIndex, renderer->ShaderProgram, renderer->TextureIndex, renderer->CurrentMesh.NoIndices);
+		LogD(transform->LocalScale.x, renderer->CurrentMesh.NoVertices);
 	}
 
 	FinalizeRender();
 }
 
-void Engine::GraphicSystem::SetTransform(const Engine::Transform& Trans, int ShaderProgram) {
+void Engine::GraphicSystem::SetTransform(Transform* Trans, int ShaderProgram) {
 	//View matrix
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
 	glm::vec3 eye = cameraTransform->Position;
@@ -56,15 +58,17 @@ void Engine::GraphicSystem::SetTransform(const Engine::Transform& Trans, int Sha
 	glm::mat4 projection = glm::perspective(45.0f, (float)w / (float)h, 0.001f, 50.0f);
 
 	//WVP matrix
-	glm::mat4 WVP = projection * view * Trans.World;
+	glm::mat4 WVP = projection * view * Trans->World;
+	glUseProgram(ShaderProgram);
 	GLuint wvpLoc = glGetUniformLocation(ShaderProgram, "WorldViewProjection");
 	glUniformMatrix4fv(wvpLoc, 1, GL_FALSE, &WVP[0][0]);
 }
 
 void Engine::GraphicSystem::RenderMesh(unsigned int VAOIndex, int ShaderProgram, unsigned int TextureIndex, unsigned int NoIndices) {
 	glUseProgram(ShaderProgram);
-	glBindTexture(GL_TEXTURE0, TextureIndex);
 	glBindVertexArray(VAOIndex);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, TextureIndex);
 	glDrawElements(GL_TRIANGLES, NoIndices, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }

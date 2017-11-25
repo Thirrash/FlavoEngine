@@ -10,16 +10,16 @@
 #include <cmath>
 
 CubeSpawner::CubeSpawner() {
-	Vertices = new float[64] {
-		//pos					//color					//UV coords
-		-1.0f, -1.0f, -1.0f,	0.0f, 0.0f, 1.0f,		0.0f, 0.0f,
-		1.0f, -1.0f, -1.0f,		0.0f, 1.0f, 0.0f,		1.0f, 0.0f,
-		1.0f, 1.0f, -1.0f,		1.0f, 0.0f, 0.0f,		1.0f, 1.0f,
-		-1.0f, 1.0f, -1.0f,		0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
-		1.0f, -1.0f, 1.0f,		0.0f, 1.0f, 0.0f,		0.0f, 0.0f,
-		-1.0f, -1.0f, 1.0f,		1.0f, 0.0f, 0.0f,		1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,		0.0f, 0.0f, 1.0f,		0.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,		0.0f, 1.0f, 0.0f,		1.0f, 0.0f
+	Vertices = new float[40] {
+		//pos					//UV coords
+		-1.0f, -1.0f, -1.0f,	0.0f, 0.0f,
+		1.0f, -1.0f, -1.0f,		1.0f, 0.0f,
+		1.0f, 1.0f, -1.0f,		1.0f, 1.0f,
+		-1.0f, 1.0f, -1.0f,		0.0f, 1.0f,
+		1.0f, -1.0f, 1.0f,		0.0f, 0.0f,
+		-1.0f, -1.0f, 1.0f,		0.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,		0.0f, 1.0f,
+		-1.0f, 1.0f, 1.0f,		1.0f, 1.0f
 	};
 
 	Indices = new unsigned int[36] {
@@ -57,6 +57,9 @@ void CubeSpawner::Start() {
 	cameraTransform->SetLocalRotation(glm::quat(glm::vec3(0.0f, 0.0, 0.0f)));
 
 	StartTime = Framework::FUtils::GetTime();
+
+	SceneObjectHandle imported = SceneManager::GetCurrent()->Instantiate("model.FBX");
+	imported.Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(5.0f, 0.0f, 0.0f));
 }
 
 void CubeSpawner::Update(double DeltaTime) {
@@ -70,8 +73,8 @@ void CubeSpawner::Update(double DeltaTime) {
 	float cameraSpeed = 4.0f * DeltaTime;
 	cameraTransform->SetLocalPosition(cameraTransform->LocalPosition + cameraSpeed * ((cameraTransform->Forward * (float)(Input::IsKeyDown(EKeyCode::W) - Input::IsKeyDown(EKeyCode::S))) + cameraTransform->Right * (float)(Input::IsKeyDown(EKeyCode::D) - Input::IsKeyDown(EKeyCode::A)) + cameraTransform->Up * (float)(Input::IsKeyDown(EKeyCode::Q) - Input::IsKeyDown(EKeyCode::E))));
 
-	LogB(glm::eulerAngles(cameraTransform->LocalRotation).x, glm::eulerAngles(cameraTransform->LocalRotation).y, glm::eulerAngles(cameraTransform->LocalRotation).z);
-	LogC(cameraTransform->LocalPosition.x, cameraTransform->LocalPosition.y, cameraTransform->LocalPosition.z);
+	//LogB(glm::eulerAngles(cameraTransform->LocalRotation).x, glm::eulerAngles(cameraTransform->LocalRotation).y, glm::eulerAngles(cameraTransform->LocalRotation).z);
+	//LogC(cameraTransform->LocalPosition.x, cameraTransform->LocalPosition.y, cameraTransform->LocalPosition.z);
 }
 
 SceneObjectHandle CubeSpawner::CreateCube(glm::vec3 pos, std::string texturePath) {
@@ -79,7 +82,7 @@ SceneObjectHandle CubeSpawner::CreateCube(glm::vec3 pos, std::string texturePath
 	ComponentHandle<Transform> trans = obj.Get()->Get<Transform>();
 	trans.Get()->SetLocalPosition(pos);
 
-	Mesh mesh(Vertices, 8 * 8, Indices, 6 * 6);
+	Mesh mesh(Vertices, 8 * 5, Indices, 6 * 6);
 	ComponentHandle<MeshRenderer> renderer = obj.Get()->Add<MeshRenderer>();
 	renderer.Get()->AssignMesh(mesh);
 	renderer.Get()->AssignTexture(texturePath);

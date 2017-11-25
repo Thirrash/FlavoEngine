@@ -4,6 +4,7 @@ Engine::Transform::Transform() : bIsDirty(true), bHasParentChanged(true) {
 	Scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	LocalScale = glm::vec3(1.0f, 1.0f, 1.0f);
 	LocalRotation = glm::quat(glm::vec3(0.0f, 0.0f, 0.0f));
+	LocalPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
 Engine::Transform::~Transform() {

@@ -23,7 +23,7 @@ namespace Engine
 		void Update(EntityManager& es, EventManager& events, TimeDelta dt) override;
 
 	private:
-		void SetTransform(const Transform& Trans, int ShaderProgram);
+		void SetTransform(Transform* Trans, int ShaderProgram);
 		void RenderMesh(unsigned int VAOIndex, int ShaderProgram, unsigned int TextureIndex, unsigned int NoIndices);
 		static void DrawBackground(Color BckColor);
 		static void FinalizeRender();
