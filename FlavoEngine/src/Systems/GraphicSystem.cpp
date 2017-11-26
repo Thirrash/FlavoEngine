@@ -37,7 +37,7 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 		Transform* transform = transformHandle.Get();
 		SetTransform(transform, renderer->ShaderProgram);
 		RenderMesh(renderer->VAOIndex, renderer->ShaderProgram, renderer->TextureIndex, renderer->CurrentMesh.NoIndices);
-		LogD(transform->LocalScale.x, renderer->CurrentMesh.NoVertices);
+		//LogD(transform->LocalScale.x, renderer->CurrentMesh.NoVertices);
 	}
 
 	FinalizeRender();

@@ -9,6 +9,13 @@
 
 namespace Engine
 {
+	enum TransformDirtiness
+	{
+		NoChange,
+		AppliedTransform,
+		PendingApply
+	};
+
 	class Transform : public InternalComponent<Transform>
 	{
 		/*** Constants ***/
@@ -37,7 +44,8 @@ namespace Engine
 
 		glm::mat4x4 World;
 		glm::mat4x4 LocalWorld;
-		bool bIsDirty;
+
+		TransformDirtiness Dirtiness;
 		bool bHasParentChanged;
 
 		/*** Methods ***/

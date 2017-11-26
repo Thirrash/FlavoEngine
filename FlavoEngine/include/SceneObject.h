@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <EntityX.h>
+#include <string>
 
 namespace Engine
 {
@@ -17,6 +18,7 @@ namespace Engine
 		/*** Fields ***/
 	public:
 		Entity Id;
+		std::string Name;
 
 	private:
 		ComponentHandle<Transform> Trans;

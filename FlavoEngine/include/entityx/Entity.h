@@ -208,6 +208,10 @@ public:
     return !(*this == other);
   }
 
+  bool operator < (const ComponentHandle<C> &other) const {
+	  return id_.id() < other.id_.id();
+  }
+
 private:
   friend class EntityManager;
 
@@ -215,7 +219,9 @@ private:
       manager_(manager), id_(id) {}
 
   EM *manager_;
-  Entity::Id id_;
+
+public:
+	Entity::Id id_;
 };
 
 

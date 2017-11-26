@@ -35,11 +35,16 @@ void Engine::TransformSystem::Update(EntityManager& es, EventManager& events, Ti
 }
 
 void Engine::TransformSystem::ChangeWorld(ComponentHandle<Transform> TransHandle, bool bIsParentDirty) {
+	static glm::vec3 up(0.0f, 1.0f, 0.0f);
+	static glm::vec3 forward(0.0f, 0.0f, 1.0f);
+	static glm::vec3 right(-1.0f, 0.0f, 0.0f);
+
 	if (!TransHandle.IsValid())
 		return;
 
 	Transform* trans = TransHandle.Get();
-	if (trans->bIsDirty) {
+
+	if (trans->Dirtiness == TransformDirtiness::PendingApply) {
 		glm::mat4 local = glm::mat4(1.0f);
 		glm::mat4 scaleMat = glm::scale(local, trans->LocalScale);
 		glm::mat4 rotMat = (glm::mat4)trans->LocalRotation;
@@ -47,36 +52,24 @@ void Engine::TransformSystem::ChangeWorld(ComponentHandle<Transform> TransHandle
 
 		trans->LocalWorld = posMat * rotMat * scaleMat;
 		if (!trans->Parent.IsDefault() && trans->Parent.IsValid())
-			trans->World = trans->Parent.Get()->World * trans->LocalWorld;
+			trans->World = trans->LocalWorld * trans->Parent.Get()->World;
 		else
 			trans->World = trans->LocalWorld;
+		trans->Dirtiness = TransformDirtiness::AppliedTransform;
 	} else {
 		if (bIsParentDirty && trans->Parent.IsValid()) {
 			trans->World = trans->Parent.Get()->World * trans->LocalWorld;
 		}
 	}
 
-	//temporary
-	glm::vec3 up(0.0f, 1.0f, 0.0f);
-	glm::vec3 forward(0.0f, 0.0f, 1.0f);
-	glm::vec3 right(-1.0f, 0.0f, 0.0f);
 	trans->Forward = glm::vec3(trans->World[2]);
 	trans->Up = glm::vec3(trans->World[1]);
 	trans->Right = -glm::vec3(trans->World[0]);
-
-	//glm::vec3 forward = glm::vec3(0.0f);
-	//forward.x = cos(glm::radians(trans->Rotation.x) * cos(glm::radians(trans->Rotation.y)));
-	//forward.y = sin(glm::radians(trans->Rotation.x));
-	//forward.z = cos(glm::radians(trans->Rotation.x) * sin(glm::radians(trans->Rotation.y)));
-	//forward = glm::normalize(forward);
-
-	//trans->Forward = forward;
-	//trans->Right = glm::cross(forward, up);
-	//trans->Up = -glm::cross(forward, trans->Right);
+	trans->Position = glm::vec3(trans->World[3]);
 
 	for (auto it : trans->Children) {
 		if (!it.second.IsValid())
 			continue;
-		ChangeWorld(it.second, trans->bIsDirty || bIsParentDirty);
+		ChangeWorld(it.second, (trans->Dirtiness != TransformDirtiness::NoChange) || bIsParentDirty);
 	}
 }

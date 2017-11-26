@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Camera.h" />
+    <ClInclude Include="include\Collider.h" />
     <ClInclude Include="include\Color.h" />
     <ClInclude Include="include\Core.h" />
     <ClInclude Include="include\Debug.h" />
@@ -232,6 +233,8 @@
     <ClInclude Include="include\SceneManager.h" />
     <ClInclude Include="include\SceneObject.h" />
     <ClInclude Include="include\SceneObjectHandle.h" />
+    <ClInclude Include="include\SphereCollider.h" />
+    <ClInclude Include="include\Systems\CollisionSystem.h" />
     <ClInclude Include="include\Systems\GraphicSystem.h" />
     <ClInclude Include="include\Systems\InputSystem.h" />
     <ClInclude Include="include\Systems\TransformSystem.h" />
@@ -244,6 +247,7 @@
     <ClCompile Include="include\OpenGL\glm\detail\dummy.cpp" />
     <ClCompile Include="include\OpenGL\glm\detail\glm.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Collider.cpp" />
     <ClCompile Include="src\Color.cpp" />
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\entityx\Entity.cc" />
@@ -264,6 +268,8 @@
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\SceneObject.cpp" />
     <ClCompile Include="src\SceneObjectHandle.cpp" />
+    <ClCompile Include="src\SphereCollider.cpp" />
+    <ClCompile Include="src\Systems\CollisionSystem.cpp" />
     <ClCompile Include="src\Systems\GraphicSystem.cpp" />
     <ClCompile Include="src\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Systems\TransformSystem.cpp" />

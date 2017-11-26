@@ -13,6 +13,7 @@
 #include "Systems/UserSystem.h"
 #include "Systems/InputSystem.h"
 #include "Systems/TransformSystem.h"
+#include "Systems/CollisionSystem.h"
 
 using namespace Framework;
 
@@ -34,6 +35,7 @@ int Engine::Core::StartGame() {
 	SystemUpdate<UserSystem> userSystem(new UserSystem(currentScene->entities), 1.0 / MAX_FRAMERATE);
 	SystemUpdate<InputSystem> inputSystem(new InputSystem(), 1.0 / MAX_FRAMERATE);
 	SystemUpdate<TransformSystem> transformSystem(new TransformSystem(), 1.0 / MAX_FRAMERATE);
+	SystemUpdate<CollisionSystem> collisionSystem(new CollisionSystem(), 1.0 / MAX_FRAMERATE);
 
 	int count = 0;
 	while (!FUtils::CheckGameLoopClose()) {
@@ -49,6 +51,7 @@ int Engine::Core::StartGame() {
 		inputSystem.Update(currentScene->entities, currentScene->events, deltaTime);
 		userSystem.Update(currentScene->entities, currentScene->events, deltaTime);
 		transformSystem.Update(currentScene->entities, currentScene->events, deltaTime);
+		collisionSystem.Update(currentScene->entities, currentScene->events, deltaTime);
 		graphicSystem.Update(currentScene->entities, currentScene->events, deltaTime);
 
 		CurrentTime = newTime;
