@@ -40,6 +40,13 @@
     <ClInclude Include="include\Framework\FDraw.h" />
     <ClInclude Include="include\Framework\FUtils.h" />
     <ClInclude Include="include\Framework\FWindow.h" />
+    <ClInclude Include="include\ImGui\imconfig.h" />
+    <ClInclude Include="include\ImGui\imgui.h" />
+    <ClInclude Include="include\ImGui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="include\ImGui\imgui_internal.h" />
+    <ClInclude Include="include\ImGui\stb_rect_pack.h" />
+    <ClInclude Include="include\ImGui\stb_textedit.h" />
+    <ClInclude Include="include\ImGui\stb_truetype.h" />
     <ClInclude Include="include\Input.h" />
     <ClInclude Include="include\InternalComponent.h" />
     <ClInclude Include="include\Logger.h" />
@@ -83,7 +90,9 @@
     <ClInclude Include="include\OpenGL\assimp\vector2.h" />
     <ClInclude Include="include\OpenGL\assimp\vector3.h" />
     <ClInclude Include="include\OpenGL\assimp\version.h" />
+    <ClInclude Include="include\OpenGL\gl3w.h" />
     <ClInclude Include="include\OpenGL\glad\glad.h" />
+    <ClInclude Include="include\OpenGL\glcorearb.h" />
     <ClInclude Include="include\OpenGL\GLFW\glfw3.h" />
     <ClInclude Include="include\OpenGL\GLFW\glfw3native.h" />
     <ClInclude Include="include\OpenGL\glm\common.hpp" />
@@ -236,6 +245,7 @@
     <ClInclude Include="include\SphereCollider.h" />
     <ClInclude Include="include\Systems\CollisionSystem.h" />
     <ClInclude Include="include\Systems\GraphicSystem.h" />
+    <ClInclude Include="include\Systems\GUISystem.h" />
     <ClInclude Include="include\Systems\InputSystem.h" />
     <ClInclude Include="include\Systems\TransformSystem.h" />
     <ClInclude Include="include\Systems\UserSystem.h" />
@@ -244,6 +254,7 @@
     <ClInclude Include="include\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\OpenGL\gl3w.c" />
     <ClCompile Include="include\OpenGL\glm\detail\dummy.cpp" />
     <ClCompile Include="include\OpenGL\glm\detail\glm.cpp" />
     <ClCompile Include="src\Camera.cpp" />
@@ -258,6 +269,10 @@
     <ClCompile Include="src\Framework\FDraw.cpp" />
     <ClCompile Include="src\Framework\FUtils.cpp" />
     <ClCompile Include="src\Framework\FWindow.cpp" />
+    <ClCompile Include="src\ImGui\imgui.cpp" />
+    <ClCompile Include="src\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="src\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="src\ImGui\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\InternalComponent.cpp" />
     <ClCompile Include="src\Maths.cpp" />
@@ -271,6 +286,7 @@
     <ClCompile Include="src\SphereCollider.cpp" />
     <ClCompile Include="src\Systems\CollisionSystem.cpp" />
     <ClCompile Include="src\Systems\GraphicSystem.cpp" />
+    <ClCompile Include="src\Systems\GUISystem.cpp" />
     <ClCompile Include="src\Systems\InputSystem.cpp" />
     <ClCompile Include="src\Systems\TransformSystem.cpp" />
     <ClCompile Include="src\Systems\UserSystem.cpp" />
@@ -453,15 +469,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)include\OpenGL;$(ProjectDir)include;$(ProjectDir)include\entityx;$(ProjectDir)include\Framework;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)include\OpenGL;$(ProjectDir)include;$(ProjectDir)include\entityx;$(ProjectDir)include\Framework;$(ProjectDir)include\ImGui;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)d</TargetName>
     <TargetExt>.lib</TargetExt>
     <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\</IntDir>
+    <SourcePath>$(ProjectDir)src/ImGUI/;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)include\OpenGL;$(ProjectDir)include;$(ProjectDir)include\entityx;$(ProjectDir)include\Framework;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include\OpenGL;$(ProjectDir)include;$(ProjectDir)include\entityx;$(ProjectDir)include\Framework;$(ProjectDir)include\ImGUI;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\</IntDir>
@@ -476,7 +493,7 @@
       <AdditionalDependencies>FlavoFrameworkd.lib;FlavoCommond.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>assimpd.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimpd.lib;glfw3.lib;opengl32.lib;gdi32.lib;shell32.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -21,11 +21,11 @@ namespace Engine
 		/*** Methods ***/
 	public:
 		void Update(EntityManager& es, EventManager& events, TimeDelta dt) override;
+		void DrawBackground(Color BckColor);
+		void FinalizeRender();
 
 	private:
 		void SetTransform(Transform* Trans, int ShaderProgram);
 		void RenderMesh(unsigned int VAOIndex, int ShaderProgram, unsigned int TextureIndex, unsigned int NoIndices);
-		static void DrawBackground(Color BckColor);
-		static void FinalizeRender();
 	};
 }

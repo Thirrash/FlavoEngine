@@ -12,6 +12,7 @@ namespace Engine
 		D = 68,
 		Q = 81,
 		E = 69,
+		R =82,
 		Escape = 256
 	};
 

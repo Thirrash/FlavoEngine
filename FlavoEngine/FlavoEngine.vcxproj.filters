@@ -2,89 +2,98 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="include">
-      <UniqueIdentifier>{0579ca6b-ed40-4327-b811-3dc48d0e9d68}</UniqueIdentifier>
+      <UniqueIdentifier>{37f34bca-76b8-42f9-bdc1-fad20f151b73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\Systems">
-      <UniqueIdentifier>{6c2140fe-0b1c-4f30-aee5-fc1225a3090f}</UniqueIdentifier>
+    <Filter Include="include\ImGui">
+      <UniqueIdentifier>{d23704ce-75a5-4166-85cb-d00892c462ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\entityx">
-      <UniqueIdentifier>{0d0ff5dc-cbdb-4688-a1a7-72bfbe77c46a}</UniqueIdentifier>
+      <UniqueIdentifier>{4fd93a42-d0ff-434e-b918-e1e725c4dc9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\entityx\3rdparty">
-      <UniqueIdentifier>{df8e216b-b6c3-4017-9644-d485227a11f4}</UniqueIdentifier>
+      <UniqueIdentifier>{80bb49c9-40ba-47f2-b48d-238244570562}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\entityx\deps">
-      <UniqueIdentifier>{305ea5e5-f218-4375-b288-bdcb63911499}</UniqueIdentifier>
+      <UniqueIdentifier>{b58c0c24-71ca-4afa-840e-b495249afaa5}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\entityx\help">
-      <UniqueIdentifier>{bdfa31ba-fff4-4adb-bfeb-5fef8d59e20b}</UniqueIdentifier>
+      <UniqueIdentifier>{296fc6d2-9708-4706-8aa5-c97d949fcd1d}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\entityx\tags">
-      <UniqueIdentifier>{186b5fa3-d90f-44a0-9399-863581edf8d2}</UniqueIdentifier>
+      <UniqueIdentifier>{939a5e6c-a1ba-4c77-a15b-36ec519927e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\Framework">
-      <UniqueIdentifier>{f3c1a4cc-5ea1-464c-b2a0-c893f3547d45}</UniqueIdentifier>
+      <UniqueIdentifier>{f9943633-43cc-40d9-a36c-350bae98424d}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL">
-      <UniqueIdentifier>{9dc01f84-9f6b-4260-8f17-e4b2f6ed3881}</UniqueIdentifier>
+      <UniqueIdentifier>{e989e3f0-732e-4ecd-83d9-d603bc71bd05}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\assimp">
-      <UniqueIdentifier>{ac77b2ae-df84-405c-a40e-ab1fbed2b85b}</UniqueIdentifier>
+      <UniqueIdentifier>{c2489207-c8af-4552-a6e8-647a865e7f81}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\assimp\Compiler">
-      <UniqueIdentifier>{375230ba-ad5d-417b-9105-86dbc53a46aa}</UniqueIdentifier>
+      <UniqueIdentifier>{db09f6d6-d710-4eed-8257-f5914170b7a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\assimp\port\AndroidJNI">
-      <UniqueIdentifier>{f32b66c0-a3c5-4641-baff-1a01cb8db2fe}</UniqueIdentifier>
+      <UniqueIdentifier>{ea55ab99-e966-4bcd-8b0b-7dbd2a1b7359}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\assimp\port">
-      <UniqueIdentifier>{5c00af90-8ab1-4a5a-933a-5a66f0a5de75}</UniqueIdentifier>
+      <UniqueIdentifier>{0b985b7a-b063-4a1b-ae16-c8a699635c4d}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\glad">
-      <UniqueIdentifier>{cb865a9d-4b27-4d06-a690-081d130afddf}</UniqueIdentifier>
+      <UniqueIdentifier>{c167bd07-9f04-4383-b06c-a7cbe2126a07}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\GLFW">
-      <UniqueIdentifier>{8eea70c2-7fd0-428e-806f-4f15d91e856a}</UniqueIdentifier>
+      <UniqueIdentifier>{d4554444-1996-4c01-b73f-b3e2299b0da6}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\glm">
-      <UniqueIdentifier>{dd97e4e7-0d03-4a9a-a8de-5a2409045a90}</UniqueIdentifier>
+      <UniqueIdentifier>{a5a691fd-1dbb-43a6-b64b-eb26c6150e46}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\glm\detail">
-      <UniqueIdentifier>{7c46a377-17be-4fcf-8245-c1782242375c}</UniqueIdentifier>
+      <UniqueIdentifier>{0400ec61-2534-4b8b-82af-698f1e309bc6}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\glm\gtc">
-      <UniqueIdentifier>{23ea7c28-b011-4ebe-b718-385eab663e7e}</UniqueIdentifier>
+      <UniqueIdentifier>{ea534056-b9b0-42e7-9892-9c7eddb26e3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\glm\gtx">
-      <UniqueIdentifier>{1e5ff709-7e6a-418c-a43e-6fd03a9a4c1e}</UniqueIdentifier>
+      <UniqueIdentifier>{4c87a2ea-4cc5-4698-8baa-e967325b1680}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\glm\simd">
-      <UniqueIdentifier>{52b9f846-abf5-4ff8-a15e-41b84ec0a318}</UniqueIdentifier>
+      <UniqueIdentifier>{8777bf18-bb96-4c9c-9b75-df50e961b07f}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\OpenGL\KHR">
-      <UniqueIdentifier>{20844f79-6065-4d6f-bbd4-624b35b31440}</UniqueIdentifier>
+      <UniqueIdentifier>{8c5e942b-0882-4959-8d41-591300657f5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Systems">
+      <UniqueIdentifier>{c3e1f441-ca6d-4514-97b6-2d90e1ac8043}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{6004aca5-14ed-4532-913c-b930112f0aa6}</UniqueIdentifier>
+      <UniqueIdentifier>{8c88c6f1-f793-4518-a6af-b1f4e914bbdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ImGui">
+      <UniqueIdentifier>{1f401517-be2d-466d-bbcf-4a88b06a6a17}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\entityx">
-      <UniqueIdentifier>{a4fdb346-88a2-48f6-ba8b-95ced1aba3e6}</UniqueIdentifier>
+      <UniqueIdentifier>{3ca9446e-5e1f-4b57-92cd-bb0edc3a82ab}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\entityx\help">
-      <UniqueIdentifier>{d930414d-cc6c-4998-a9c7-ade39968509e}</UniqueIdentifier>
+      <UniqueIdentifier>{b99eeeae-fd64-4971-8a96-488cbfa12a35}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Framework">
-      <UniqueIdentifier>{f4587a33-c5eb-4fc8-9997-5477c4cd5173}</UniqueIdentifier>
+      <UniqueIdentifier>{733c9d74-bcad-4095-81e5-85ccea20a338}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\OpenGL">
-      <UniqueIdentifier>{052aab50-b6a3-4638-80f0-c5a28f9eb5da}</UniqueIdentifier>
+      <UniqueIdentifier>{529a6dca-759d-4dc2-b61c-466cf46b9664}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Systems">
-      <UniqueIdentifier>{245a71ee-5a30-40b0-b34c-3f8ee5775a28}</UniqueIdentifier>
+      <UniqueIdentifier>{e798fade-1c38-45cb-a00d-eb85c2186a7d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Camera.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Collider.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Color.h">
@@ -99,10 +108,40 @@
     <ClInclude Include="include\EntityX.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\ImGui\imconfig.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\imgui.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\imgui_impl_glfw_gl3.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\imgui_internal.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\stb_rect_pack.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\stb_textedit.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\stb_truetype.h">
+      <Filter>include\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InternalComponent.h">
+      <Filter>include</Filter>
+    </ClInclude>
     <ClInclude Include="include\Logger.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Maths.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Mesh.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\MeshRenderer.h">
@@ -120,10 +159,13 @@
     <ClInclude Include="include\SceneObjectHandle.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\Systems\GraphicSystem.h">
-      <Filter>include\Systems</Filter>
+    <ClInclude Include="include\SphereCollider.h">
+      <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Transform.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UserComponent.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Vector3.h">
@@ -173,6 +215,12 @@
     </ClInclude>
     <ClInclude Include="include\Framework\FWindow.h">
       <Filter>include\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OpenGL\gl3w.h">
+      <Filter>include\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OpenGL\glcorearb.h">
+      <Filter>include\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="include\OpenGL\stb_image.h">
       <Filter>include\OpenGL</Filter>
@@ -723,36 +771,143 @@
     <ClInclude Include="include\OpenGL\KHR\khrplatform.h">
       <Filter>include\OpenGL\KHR</Filter>
     </ClInclude>
-    <ClInclude Include="include\Mesh.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Systems\UserSystem.h">
+    <ClInclude Include="include\Systems\CollisionSystem.h">
       <Filter>include\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="include\UserComponent.h">
-      <Filter>include</Filter>
+    <ClInclude Include="include\Systems\GraphicSystem.h">
+      <Filter>include\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="include\InternalComponent.h">
-      <Filter>include</Filter>
+    <ClInclude Include="include\Systems\GUISystem.h">
+      <Filter>include\Systems</Filter>
     </ClInclude>
     <ClInclude Include="include\Systems\InputSystem.h">
       <Filter>include\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="include\Input.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Systems\TransformSystem.h">
       <Filter>include\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="include\Systems\CollisionSystem.h">
+    <ClInclude Include="include\Systems\UserSystem.h">
       <Filter>include\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="include\Collider.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\SphereCollider.h">
-      <Filter>include</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\OpenGL\gl3w.c">
+      <Filter>include\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="include\OpenGL\glm\detail\dummy.cpp">
+      <Filter>include\OpenGL\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="include\OpenGL\glm\detail\glm.cpp">
+      <Filter>include\OpenGL\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Collider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Color.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui.cpp">
+      <Filter>src\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui_demo.cpp">
+      <Filter>src\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui_draw.cpp">
+      <Filter>src\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\imgui_impl_glfw_gl3.cpp">
+      <Filter>src\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InternalComponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Maths.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mesh.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MeshRenderer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneObjectHandle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SphereCollider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UserComponent.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector3.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityx\Entity.cc">
+      <Filter>src\entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityx\Event.cc">
+      <Filter>src\entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityx\System.cc">
+      <Filter>src\entityx</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityx\help\Pool.cc">
+      <Filter>src\entityx\help</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entityx\help\Timer.cc">
+      <Filter>src\entityx\help</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Framework\FDraw.cpp">
+      <Filter>src\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Framework\FUtils.cpp">
+      <Filter>src\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Framework\FWindow.cpp">
+      <Filter>src\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OpenGL\glad.c">
+      <Filter>src\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Systems\CollisionSystem.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Systems\GraphicSystem.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Systems\GUISystem.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Systems\InputSystem.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Systems\TransformSystem.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Systems\UserSystem.cpp">
+      <Filter>src\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="include\OpenGL\assimp\color4.inl">
@@ -1115,106 +1270,5 @@
     <None Include="include\OpenGL\glm\gtx\wrap.inl">
       <Filter>include\OpenGL\glm\gtx</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="include\OpenGL\glm\detail\dummy.cpp">
-      <Filter>include\OpenGL\glm\detail</Filter>
-    </ClCompile>
-    <ClCompile Include="include\OpenGL\glm\detail\glm.cpp">
-      <Filter>include\OpenGL\glm\detail</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Camera.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Color.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Maths.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MeshRenderer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneManager.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneObject.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SceneObjectHandle.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Transform.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Vector3.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entityx\Entity.cc">
-      <Filter>src\entityx</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entityx\Event.cc">
-      <Filter>src\entityx</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entityx\System.cc">
-      <Filter>src\entityx</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entityx\help\Pool.cc">
-      <Filter>src\entityx\help</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entityx\help\Timer.cc">
-      <Filter>src\entityx\help</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Framework\FDraw.cpp">
-      <Filter>src\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Framework\FUtils.cpp">
-      <Filter>src\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Framework\FWindow.cpp">
-      <Filter>src\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="src\OpenGL\glad.c">
-      <Filter>src\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Systems\GraphicSystem.cpp">
-      <Filter>src\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mesh.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Systems\UserSystem.cpp">
-      <Filter>src\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\UserComponent.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\InternalComponent.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Systems\InputSystem.cpp">
-      <Filter>src\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Input.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Systems\TransformSystem.cpp">
-      <Filter>src\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Systems\CollisionSystem.cpp">
-      <Filter>src\Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Collider.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\SphereCollider.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

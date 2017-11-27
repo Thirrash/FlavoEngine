@@ -22,10 +22,21 @@ Engine::InputSystem::~InputSystem() {
 }
 
 void Engine::InputSystem::Update(EntityManager& es, EventManager& events, TimeDelta dt) {
-	events.emit<MouseInput>(PendingMouse->X - LastMouseX, PendingMouse->Y - LastMouseY, PendingMouse->Scroll);
+	static bool bIsCursorHidden = true;
+	static float lastRInput = 0.0f;
+
+	events.emit<MouseInput>(PendingMouse->X, PendingMouse->Y, PendingMouse->Scroll);
 	LastMouseX = PendingMouse->X;
 	LastMouseY = PendingMouse->Y;
 	PendingMouse->Scroll = 0.0;
+
+	if (CheckKey(EKeyCode::R) && lastRInput > 1.0f) {
+		bIsCursorHidden = !bIsCursorHidden;
+		glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, (bIsCursorHidden) ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+		lastRInput = 0.0f;
+	}
+
+	lastRInput += dt;
 }
 
 bool Engine::InputSystem::CheckKey(EKeyCode KeyCode) {

@@ -22,6 +22,7 @@ private:
 	unsigned int* Indices;
 	std::vector<SceneObjectHandle> Cubes;
 	float StartTime;
+	MouseInput LastInput;
 
 	/*** Methods ***/
 public:

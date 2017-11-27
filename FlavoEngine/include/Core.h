@@ -50,6 +50,10 @@ namespace Engine
 				Timer += DeltaTime;
 			}
 
+			T* Get() {
+				return System;
+			}
+
 		private:
 			T* System;
 			double Delta;

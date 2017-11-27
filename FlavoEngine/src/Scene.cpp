@@ -6,9 +6,13 @@
 #include <OpenGL/assimp/Importer.hpp>
 #include <OpenGL/assimp/postprocess.h>
 #include <queue>
+#include "SphereCollider.h"
 
 Engine::Scene::Scene() {
 	SceneObject* cameraObj = new SceneObject(entities.create());
+	ComponentHandle<Camera> cam = cameraObj->Add<Camera>();
+	cam.Get()->configure(events);
+
 	MainCamera = SceneObjectHandle(&entities, cameraObj);
 	Objects.insert(std::pair<Entity::Id, SceneObjectHandle>(cameraObj->Id.id(), MainCamera));
 }
@@ -79,9 +83,42 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 		aiMesh* mesh = AiScene->mMeshes[Node->mMeshes[0]];
 
 		handle = Instantiate();
+		handle.Get()->Name = Node->mName.C_Str();
+		ComponentHandle<Transform> transform = handle.Get()->Get<Transform>();
+
+		aiVector3D pos, scale;
+		aiQuaterniont<float> rot;
+		Node->mTransformation.Decompose(scale, rot, pos);
+
+		glm::vec3 scalev(1.0f, 1.0f, 1.0f);
+		if (Parent.IsValid())
+			scalev = glm::vec3(scale.x, scale.y, scale.z) * Parent.Get()->Get<Transform>().Get()->Scale;
+
+		transform.Get()->SetLocalPosition(glm::vec3(pos.x, pos.y, pos.z));
+		transform.Get()->SetLocalRotation(glm::quat(rot.x, rot.y, rot.z, rot.w));
+		transform.Get()->SetLocalScale(glm::vec3(scale.x, scale.y, scale.z));
+		LogB(Node->mName.C_Str(), pos.x, pos.y, pos.z, scale.x, scale.y, scale.z);
+
 		ComponentHandle<MeshRenderer> renderer = handle.Get()->Add<MeshRenderer>();
+		ComponentHandle<SphereCollider> collider = handle.Get()->Add<SphereCollider>();
+
+		float maxDistance = -10000.0f, minDistance = 10000.0f;
 		float* vertices = new float[mesh->mNumVertices * 5];
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+			if (mesh->mVertices[i].x > maxDistance)
+				maxDistance = mesh->mVertices[i].x;
+			if (mesh->mVertices[i].y > maxDistance)
+				maxDistance = mesh->mVertices[i].y;
+			if (mesh->mVertices[i].z > maxDistance)
+				maxDistance = mesh->mVertices[i].z;
+
+			if (mesh->mVertices[i].x < minDistance)
+				minDistance = mesh->mVertices[i].x;
+			if (mesh->mVertices[i].y < minDistance)
+				minDistance = mesh->mVertices[i].y;
+			if (mesh->mVertices[i].z < minDistance)
+				minDistance = mesh->mVertices[i].z;
+
 			vertices[i * 5] = mesh->mVertices[i].x;
 			vertices[i * 5 + 1] = mesh->mVertices[i].y;
 			vertices[i * 5 + 2] = mesh->mVertices[i].z;
@@ -96,6 +133,7 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 			}
 		}
 
+		collider.Get()->SetRadius((maxDistance - minDistance) * 0.5f * scale.x * scalev.x);
 		unsigned int* indices = new unsigned int[mesh->mNumFaces * 3];
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
 			indices[i * 3] = mesh->mFaces[i].mIndices[0];

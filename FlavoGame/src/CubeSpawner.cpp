@@ -10,8 +10,10 @@
 #include "SphereCollider.h"
 #include "Systems/CollisionSystem.h"
 #include <cmath>
+#include "Camera.h"
+#include <GLFW/glfw3.h>
 
-CubeSpawner::CubeSpawner() {
+CubeSpawner::CubeSpawner() : LastInput(0.0f, 0.0f, 0.0f) {
 	Vertices = new float[40] {
 		//pos					//UV coords
 		-1.0f, -1.0f, -1.0f,	0.0f, 0.0f,
@@ -39,10 +41,14 @@ void CubeSpawner::configure(EventManager& event_manager) {
 }
 
 void CubeSpawner::receive(const MouseInput& Input) {
+	if (glfwGetInputMode(glfwGetCurrentContext(), GLFW_CURSOR) == GLFW_CURSOR_NORMAL)
+		return;
+
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
-	glm::quat newRotation = cameraTransform->LocalRotation * glm::quat(glm::vec3(Input.Y * 0.001, 0.0f, 0.0f)); //local x-axis rotation
-	newRotation = glm::quat(glm::vec3(0.0f, -Input.X * 0.001, 0.0f)) * newRotation;
+	glm::quat newRotation = cameraTransform->LocalRotation * glm::quat(glm::vec3((Input.Y - LastInput.Y) * 0.001, 0.0f, 0.0f)); //local x-axis rotation
+	newRotation = glm::quat(glm::vec3(0.0f, -(Input.X - LastInput.X) * 0.001, 0.0f)) * newRotation;
 	cameraTransform->SetLocalRotation(newRotation);
+	LastInput = Input;
 }
 
 void CubeSpawner::Start() {
@@ -65,30 +71,19 @@ void CubeSpawner::Start() {
 	StartTime = Framework::FUtils::GetTime();
 
 	SceneObjectHandle imported = SceneManager::GetCurrent()->Instantiate("model.FBX");
-	imported.Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(5.0f, 0.0f, 0.0f));
+	//imported.Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(5.0f, 0.0f, 0.0f));
 }
 
 void CubeSpawner::Update(double DeltaTime) {
 	float currentTime = Framework::FUtils::GetTime() - StartTime;
 	float trueDelta = (currentTime - StartTime);
-	Cubes[1].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(cos(trueDelta), 0.0, sin(trueDelta)) * 2.0f);
-	Cubes[0].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(sin(trueDelta), 0.0, cos(trueDelta)) * 12.0f);
+	//Cubes[1].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(cos(trueDelta), 0.0, sin(trueDelta)) * 2.0f);
+	//Cubes[0].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(sin(trueDelta), 0.0, cos(trueDelta)) * 12.0f);
 	Cubes[0].Get()->Get<Transform>().Get()->SetLocalRotation(Cubes[0].Get()->Get<Transform>().Get()->LocalRotation * glm::quat(glm::vec3(0.0f, 0.1f, 0.0f)));
 
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
 	float cameraSpeed = 4.0f * DeltaTime;
 	cameraTransform->SetLocalPosition(cameraTransform->LocalPosition + cameraSpeed * ((cameraTransform->Forward * (float)(Input::IsKeyDown(EKeyCode::W) - Input::IsKeyDown(EKeyCode::S))) + cameraTransform->Right * (float)(Input::IsKeyDown(EKeyCode::D) - Input::IsKeyDown(EKeyCode::A)) + cameraTransform->Up * (float)(Input::IsKeyDown(EKeyCode::Q) - Input::IsKeyDown(EKeyCode::E))));
-
-	//LogB(glm::eulerAngles(cameraTransform->LocalRotation).x, glm::eulerAngles(cameraTransform->LocalRotation).y, glm::eulerAngles(cameraTransform->LocalRotation).z);
-	//LogC(cameraTransform->LocalPosition.x, cameraTransform->LocalPosition.y, cameraTransform->LocalPosition.z);
-
-	//LogC(Cubes[0].Get()->Get<Transform>().Get()->Position.x, Cubes[0].Get()->Get<Transform>().Get()->Position.y, Cubes[0].Get()->Get<Transform>().Get()->Position.z);
-
-	ComponentHandle<Collider> hit;
-	glm::vec3 hitPoint;
-	if (CollisionSystem::Raycast(glm::vec3(-20.0f, 0.0f, 0.0f), glm::vec3(20.0f, 0.0f, 0.0f), hit, hitPoint)) {
-		LogA(hit.Get()->AssignedTo->Name, hitPoint.x, hitPoint.y, hitPoint.z, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.x, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.y, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.z);
-	}
 }
 
 SceneObjectHandle CubeSpawner::CreateCube(glm::vec3 pos, std::string texturePath) {

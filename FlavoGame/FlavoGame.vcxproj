@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)FlavoEngine\include;$(ProjectDir)include;$(SolutionDir)FlavoEngine\include\OpenGL;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)FlavoEngine\include;$(ProjectDir)include;$(SolutionDir)FlavoEngine\include\OpenGL;$(SolutionDir)FlavoEngine\include\ImGUI;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)build\$(Configuration)\</IntDir>
     <LibraryPath>$(SolutionDir)FlavoEngine\bin\Debug;$(SolutionDir)FlavoEngine\lib;$(LibraryPath)</LibraryPath>

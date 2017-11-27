@@ -1,5 +1,7 @@
 #include "SphereCollider.h"
 #include "Transform.h"
+#include "Debug.h"
+#include "SceneObject.h"
 
 Engine::SphereCollider::SphereCollider() : Collider() {
 
@@ -13,6 +15,7 @@ void Engine::SphereCollider::SetRadius(float Radius) {
 	this->Radius = Radius;
 	SetLocalBoundingBox(-Radius, Radius, -Radius, Radius, -Radius, Radius);
 	bIsDirty = true;
+	LogD("Radius", Radius, "set for:", AssignedTo->Name);
 }
 
 bool Engine::SphereCollider::CheckLineCollision(const glm::vec3& LineOrigin, const glm::vec3& LineEnd, Transform* Trans, glm::vec3& CollisionPoint) {

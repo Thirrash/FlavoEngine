@@ -23,8 +23,6 @@ Engine::GraphicSystem::~GraphicSystem() {
 }
 
 void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, TimeDelta dt) {
-	DrawBackground(Color(0.1f, 0.2f, 0.3f, 1.0f));
-
 	ComponentHandle<Transform> transformHandle;
 	ComponentHandle<MeshRenderer> rendererHandle;
 	for (Entity entity : es.entities_with_components(transformHandle, rendererHandle)) {
@@ -37,25 +35,24 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 		Transform* transform = transformHandle.Get();
 		SetTransform(transform, renderer->ShaderProgram);
 		RenderMesh(renderer->VAOIndex, renderer->ShaderProgram, renderer->TextureIndex, renderer->CurrentMesh.NoIndices);
-		//LogD(transform->LocalScale.x, renderer->CurrentMesh.NoVertices);
 	}
-
-	FinalizeRender();
 }
 
 void Engine::GraphicSystem::SetTransform(Transform* Trans, int ShaderProgram) {
 	//View matrix
+	Camera* camera = SceneManager::GetCurrent()->MainCamera.Get()->Get<Camera>().Get();
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
 	glm::vec3 eye = cameraTransform->Position;
 	glm::vec3 dir = glm::normalize(cameraTransform->Forward);
 	glm::vec3 up(0.0f, 1.0f, 0.0f);
-
 	glm::mat4 view = glm::lookAt(eye, eye + dir, up);
+	camera->ViewMatrix = view;
 
 	//Projection matrix
 	int w, h;
 	glfwGetWindowSize(glfwGetCurrentContext(), &w, &h);
 	glm::mat4 projection = glm::perspective(45.0f, (float)w / (float)h, 0.001f, 50.0f);
+	camera->PerspectiveMatrix = projection;
 
 	//WVP matrix
 	glm::mat4 WVP = projection * view * Trans->World;
