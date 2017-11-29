@@ -43,7 +43,6 @@ bool Engine::CollisionSystem::Raycast(const glm::vec3& Origin, const glm::vec3& 
 	}
 
 	for (auto it : cols) {
-		//LogD(it.Get()->AssignedTo->Name);
 		if (it.Get()->CheckLineCollision(Origin, End, it.Get()->AssignedTo->Get<Transform>().Get(), HitPoint)) {
 			HitCollider = it;
 			return true;

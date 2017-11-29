@@ -25,6 +25,6 @@ namespace Engine
 		void SetRadius(float Radius);
 
 	protected:
-		bool CheckLineCollision(const glm::vec3& LineOrigin, const glm::vec3& LineEnd, Transform* Trans, glm::vec3& CollisionPoint);
+		bool CheckLineCollision(const glm::vec3& LineOrigin, const glm::vec3& LineEnd, Transform* Trans, glm::vec3& CollisionPoint) override;
 	};
 }

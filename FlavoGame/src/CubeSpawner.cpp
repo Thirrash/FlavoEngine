@@ -52,12 +52,12 @@ void CubeSpawner::receive(const MouseInput& Input) {
 }
 
 void CubeSpawner::Start() {
-	SceneObjectHandle cube1 = CreateCube(glm::vec3(12.0, 0.0, 0.0), "../../Resources/Images/brick.jpg");
+	SceneObjectHandle cube1 = CreateCube(glm::vec3(8.0, -3.0, -4.0), "../../Resources/Images/brick.jpg");
 	cube1.Get()->Name = "CubeChild";
 	cube1.Get()->Get<Transform>().Get()->SetLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 	Cubes.push_back(cube1);
 
-	SceneObjectHandle cube2 = CreateCube(glm::vec3(2.0, 0.0, 0.0), "../../Resources/Images/brick.jpg");
+	SceneObjectHandle cube2 = CreateCube(glm::vec3(2.0, -3.0, 0.0), "../../Resources/Images/brick.jpg");
 	cube2.Get()->Name = "CubeParent";
 	cube2.Get()->Get<Transform>().Get()->SetLocalRotation(glm::vec3(0.0f, glm::radians(45.0f), 0.0f));
 	Cubes.push_back(cube2);
@@ -70,7 +70,7 @@ void CubeSpawner::Start() {
 
 	StartTime = Framework::FUtils::GetTime();
 
-	SceneObjectHandle imported = SceneManager::GetCurrent()->Instantiate("model.FBX");
+	SceneObjectHandle imported = SceneManager::GetCurrent()->Instantiate("../../Resources/Models/Totem.FBX");
 	//imported.Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(5.0f, 0.0f, 0.0f));
 }
 

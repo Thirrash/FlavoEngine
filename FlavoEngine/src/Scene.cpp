@@ -102,7 +102,8 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 		ComponentHandle<MeshRenderer> renderer = handle.Get()->Add<MeshRenderer>();
 		ComponentHandle<BoxCollider> collider = handle.Get()->Add<BoxCollider>();
 
-		float maxDistance[3], minDistance[3];
+		float maxDistance[3]{ -9999999.9f, -9999999.9f , -9999999.9f };
+		float minDistance[3]{ 9999999.9f, 9999999.9f , 9999999.9f };
 		float* vertices = new float[mesh->mNumVertices * 5];
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 			if (mesh->mVertices[i].x > maxDistance[0])
@@ -149,7 +150,7 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 				aiString textPath;
 				material->GetTexture(aiTextureType_DIFFUSE, 0, &textPath);
 				std::string truePath = textPath.C_Str();
-				renderer->AssignTexture(truePath);
+				renderer->AssignTexture(Directory + "/" + truePath);
 			}
 		}
 
