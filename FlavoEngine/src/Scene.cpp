@@ -6,7 +6,7 @@
 #include <OpenGL/assimp/Importer.hpp>
 #include <OpenGL/assimp/postprocess.h>
 #include <queue>
-#include "SphereCollider.h"
+#include "BoxCollider.h"
 
 Engine::Scene::Scene() {
 	SceneObject* cameraObj = new SceneObject(entities.create());
@@ -100,24 +100,24 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 		LogB(Node->mName.C_Str(), pos.x, pos.y, pos.z, scale.x, scale.y, scale.z);
 
 		ComponentHandle<MeshRenderer> renderer = handle.Get()->Add<MeshRenderer>();
-		ComponentHandle<SphereCollider> collider = handle.Get()->Add<SphereCollider>();
+		ComponentHandle<BoxCollider> collider = handle.Get()->Add<BoxCollider>();
 
-		float maxDistance = -10000.0f, minDistance = 10000.0f;
+		float maxDistance[3], minDistance[3];
 		float* vertices = new float[mesh->mNumVertices * 5];
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-			if (mesh->mVertices[i].x > maxDistance)
-				maxDistance = mesh->mVertices[i].x;
-			if (mesh->mVertices[i].y > maxDistance)
-				maxDistance = mesh->mVertices[i].y;
-			if (mesh->mVertices[i].z > maxDistance)
-				maxDistance = mesh->mVertices[i].z;
+			if (mesh->mVertices[i].x > maxDistance[0])
+				maxDistance[0] = mesh->mVertices[i].x;
+			if (mesh->mVertices[i].y > maxDistance[1])
+				maxDistance[1] = mesh->mVertices[i].y;
+			if (mesh->mVertices[i].z > maxDistance[2])
+				maxDistance[2] = mesh->mVertices[i].z;
 
-			if (mesh->mVertices[i].x < minDistance)
-				minDistance = mesh->mVertices[i].x;
-			if (mesh->mVertices[i].y < minDistance)
-				minDistance = mesh->mVertices[i].y;
-			if (mesh->mVertices[i].z < minDistance)
-				minDistance = mesh->mVertices[i].z;
+			if (mesh->mVertices[i].x < minDistance[0])
+				minDistance[0] = mesh->mVertices[i].x;
+			if (mesh->mVertices[i].y < minDistance[1])
+				minDistance[1] = mesh->mVertices[i].y;
+			if (mesh->mVertices[i].z < minDistance[2])
+				minDistance[2] = mesh->mVertices[i].z;
 
 			vertices[i * 5] = mesh->mVertices[i].x;
 			vertices[i * 5 + 1] = mesh->mVertices[i].y;
@@ -133,7 +133,8 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 			}
 		}
 
-		collider.Get()->SetRadius((maxDistance - minDistance) * 0.5f * scale.x * scalev.x);
+		LogD(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
+		collider.Get()->SetBox(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
 		unsigned int* indices = new unsigned int[mesh->mNumFaces * 3];
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
 			indices[i * 3] = mesh->mFaces[i].mIndices[0];

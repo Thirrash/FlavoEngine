@@ -789,6 +789,9 @@
     <ClInclude Include="include\Systems\UserSystem.h">
       <Filter>include\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="include\BoxCollider.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\OpenGL\gl3w.c">
@@ -907,6 +910,9 @@
     </ClCompile>
     <ClCompile Include="src\Systems\UserSystem.cpp">
       <Filter>src\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoxCollider.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
