@@ -5,17 +5,18 @@
 
 namespace Engine
 {
-	class LightBase : InternalComponent<LightBase>
+	template<class C>
+	class LightBase : public InternalComponent<C>
 	{
 		/*** Constants ***/
 		/*** Ctors ***/
 	public:
-		LightBase();
-		virtual ~LightBase();
+		LightBase() { Color = glm::vec3(1.0f, 1.0f, 1.0f); }
+		virtual ~LightBase() { }
 
 		/*** Fields ***/
 	public:
-		glm::vec4 Color;
+		glm::vec3 Color;
 
 		/*** Methods ***/
 	};

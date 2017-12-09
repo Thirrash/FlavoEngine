@@ -12,6 +12,7 @@
 #include "Scene.h"
 #include "SceneObjectHandle.h"
 #include "SceneObject.h"
+#include "DirectionalLight.h"
 #include "Maths.h"
 
 Engine::GraphicSystem::GraphicSystem() {
@@ -23,6 +24,11 @@ Engine::GraphicSystem::~GraphicSystem() {
 }
 
 void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, TimeDelta dt) {
+	ComponentHandle<DirectionalLight> dirHandle;
+	for (Entity entity : es.entities_with_components(dirHandle)) {
+		break;
+	}
+
 	ComponentHandle<Transform> transformHandle;
 	ComponentHandle<MeshRenderer> rendererHandle;
 	for (Entity entity : es.entities_with_components(transformHandle, rendererHandle)) {
@@ -33,7 +39,16 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 
 		MeshRenderer* renderer = rendererHandle.Get();
 		Transform* transform = transformHandle.Get();
+
+		glUseProgram(renderer->CurrentMat.ShaderProgram);
 		SetTransform(transform, renderer->CurrentMat.ShaderProgram);
+
+		GLuint dirLoc = glGetUniformLocation(renderer->CurrentMat.ShaderProgram, "DirLight.Direction");
+		glUniform3f(dirLoc, dirHandle.Get()->Direction.x, dirHandle.Get()->Direction.y, dirHandle.Get()->Direction.z);
+		GLuint colorLoc = glGetUniformLocation(renderer->CurrentMat.ShaderProgram, "DirLight.Color");
+		glUniform3f(colorLoc, dirHandle.Get()->Color.x, dirHandle.Get()->Color.y, dirHandle.Get()->Color.z);
+
+
 		RenderMesh(renderer->VAOIndex, renderer->CurrentMat.ShaderProgram, renderer->CurrentMat.TextureIndex, renderer->CurrentMesh.NoIndices);
 	}
 }
@@ -55,13 +70,19 @@ void Engine::GraphicSystem::SetTransform(Transform* Trans, int ShaderProgram) {
 	camera->PerspectiveMatrix = projection;
 
 	//WVP matrix
-	glUseProgram(ShaderProgram);
 	GLuint projLoc = glGetUniformLocation(ShaderProgram, "Projection");
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, &projection[0][0]);
 	GLuint viewLoc = glGetUniformLocation(ShaderProgram, "View");
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
 	GLuint worldLoc = glGetUniformLocation(ShaderProgram, "World");
 	glUniformMatrix4fv(worldLoc, 1, GL_FALSE, &Trans->World[0][0]);
+
+	glm::mat3 normalMat = glm::transpose(glm::inverse(Trans->World));
+	GLuint normalMatLoc = glGetUniformLocation(ShaderProgram, "NormalMatrix");
+	glUniformMatrix3fv(normalMatLoc, 1, GL_TRUE, &normalMat[0][0]);
+
+	GLuint viewPosLoc = glGetUniformLocation(ShaderProgram, "ViewPos");
+	glUniform3f(viewPosLoc, eye.x, eye.y, eye.z);
 }
 
 void Engine::GraphicSystem::RenderMesh(unsigned int VAOIndex, int ShaderProgram, unsigned int TextureIndex, unsigned int NoIndices) {

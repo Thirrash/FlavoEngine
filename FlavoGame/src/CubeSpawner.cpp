@@ -9,6 +9,7 @@
 #include "Framework/FUtils.h"
 #include "SphereCollider.h"
 #include "Systems/CollisionSystem.h"
+#include "DirectionalLight.h"
 #include <cmath>
 #include "Camera.h"
 #include <GLFW/glfw3.h>
@@ -57,6 +58,10 @@ void CubeSpawner::Start() {
 	cameraTransform->SetLocalRotation(glm::quat(glm::vec3(0.0f, 0.0, 0.0f)));
 
 	StartTime = Framework::FUtils::GetTime();
+
+	SceneObjectHandle dirLightObj = SceneManager::GetCurrent()->Instantiate();
+	ComponentHandle<DirectionalLight> dirLight = dirLightObj.Get()->Add<DirectionalLight>();
+	dirLight.Get()->Direction = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	SceneObjectHandle imported = SceneManager::GetCurrent()->Instantiate("../../Resources/Models/Totem.FBX");
 	//imported.Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(5.0f, 0.0f, 0.0f));

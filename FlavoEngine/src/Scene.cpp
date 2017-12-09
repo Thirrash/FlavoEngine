@@ -124,9 +124,9 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 			vertices[i * 8 + 1] = mesh->mVertices[i].y;
 			vertices[i * 8 + 2] = mesh->mVertices[i].z;
 
-			vertices[i * 8 + 3] = mesh->mNormals->x;
-			vertices[i * 8 + 4] = mesh->mNormals->y;
-			vertices[i * 8 + 5] = mesh->mNormals->z;
+			vertices[i * 8 + 3] = mesh->mNormals[i].x;
+			vertices[i * 8 + 4] = mesh->mNormals[i].y;
+			vertices[i * 8 + 5] = mesh->mNormals[i].z;
 
 			if (mesh->mTextureCoords[0] != nullptr) {
 				vertices[i * 8 + 6] = mesh->mTextureCoords[0][i].x;
