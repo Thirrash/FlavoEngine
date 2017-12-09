@@ -26,7 +26,7 @@ void Engine::GUISystem::Update(EntityManager& es, EventManager& events, TimeDelt
 	ComponentHandle<Collider> hit;
 	glm::vec3 hitPoint;
 	if (CollisionSystem::Raycast(cameraRay.Origin, cameraRay.End, hit, hitPoint)) {
-		LogB(hit.Get()->AssignedTo->Name, hitPoint.x, hitPoint.y, hitPoint.z, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.x, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.y, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.z);
+		//LogB(hit.Get()->AssignedTo->Name, hitPoint.x, hitPoint.y, hitPoint.z, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.x, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.y, hit.Get()->AssignedTo->Get<Transform>().Get()->Position.z);
 	}
 
 	if (hit.IsDefault()) {

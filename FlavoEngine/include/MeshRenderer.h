@@ -3,6 +3,7 @@
 #include "InternalComponent.h"
 #include "EntityX.h"
 #include "Mesh.h"
+#include "Material.h"
 #include <string>
 
 namespace Engine
@@ -18,14 +19,13 @@ namespace Engine
 		/*** Fields ***/
 	public:
 		Mesh CurrentMesh;
-		unsigned int ShaderProgram;
+		Material CurrentMat;
 		unsigned int VAOIndex;
-		unsigned int TextureIndex;
+
 
 		/*** Methods ***/
 	public:
 		void AssignMesh(Mesh NewMesh);
-		void AssignTexture(std::string Path);
 	};
 }
 

@@ -792,6 +792,21 @@
     <ClInclude Include="include\BoxCollider.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\LightBase.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Material.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DirectionalLight.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PointLight.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpotLight.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\OpenGL\gl3w.c">
@@ -912,6 +927,21 @@
       <Filter>src\Systems</Filter>
     </ClCompile>
     <ClCompile Include="src\BoxCollider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LightBase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Material.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DirectionalLight.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PointLight.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpotLight.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

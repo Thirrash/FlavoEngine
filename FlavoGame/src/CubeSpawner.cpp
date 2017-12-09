@@ -52,18 +52,6 @@ void CubeSpawner::receive(const MouseInput& Input) {
 }
 
 void CubeSpawner::Start() {
-	SceneObjectHandle cube1 = CreateCube(glm::vec3(8.0, -3.0, -4.0), "../../Resources/Images/brick.jpg");
-	cube1.Get()->Name = "CubeChild";
-	cube1.Get()->Get<Transform>().Get()->SetLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
-	Cubes.push_back(cube1);
-
-	SceneObjectHandle cube2 = CreateCube(glm::vec3(2.0, -3.0, 0.0), "../../Resources/Images/brick.jpg");
-	cube2.Get()->Name = "CubeParent";
-	cube2.Get()->Get<Transform>().Get()->SetLocalRotation(glm::vec3(0.0f, glm::radians(45.0f), 0.0f));
-	Cubes.push_back(cube2);
-
-	//SceneManager::GetCurrent()->ChangeParent(cube2.Get()->Get<Transform>(), cube1.Get()->Get<Transform>());
-
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
 	cameraTransform->SetLocalPosition(glm::vec3(0.0f, 0.0f, -10.0f));
 	cameraTransform->SetLocalRotation(glm::quat(glm::vec3(0.0f, 0.0, 0.0f)));
@@ -77,9 +65,6 @@ void CubeSpawner::Start() {
 void CubeSpawner::Update(double DeltaTime) {
 	float currentTime = Framework::FUtils::GetTime() - StartTime;
 	float trueDelta = (currentTime - StartTime);
-	//Cubes[1].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(cos(trueDelta), 0.0, sin(trueDelta)) * 2.0f);
-	//Cubes[0].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(sin(trueDelta), 0.0, cos(trueDelta)) * 12.0f);
-	Cubes[0].Get()->Get<Transform>().Get()->SetLocalRotation(Cubes[0].Get()->Get<Transform>().Get()->LocalRotation * glm::quat(glm::vec3(0.0f, 0.1f, 0.0f)));
 
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
 	float cameraSpeed = 4.0f * DeltaTime;
@@ -94,7 +79,7 @@ SceneObjectHandle CubeSpawner::CreateCube(glm::vec3 pos, std::string texturePath
 	Mesh mesh(Vertices, 8 * 5, Indices, 6 * 6);
 	ComponentHandle<MeshRenderer> renderer = obj.Get()->Add<MeshRenderer>();
 	renderer.Get()->AssignMesh(mesh);
-	renderer.Get()->AssignTexture(texturePath);
+	renderer.Get()->CurrentMat.AssignTexture(texturePath);
 
 	ComponentHandle<SphereCollider> collider = obj.Get()->Add<SphereCollider>();
 	collider.Get()->SetRadius(1.0f);

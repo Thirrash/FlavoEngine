@@ -104,7 +104,7 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 
 		float maxDistance[3]{ -9999999.9f, -9999999.9f , -9999999.9f };
 		float minDistance[3]{ 9999999.9f, 9999999.9f , 9999999.9f };
-		float* vertices = new float[mesh->mNumVertices * 5];
+		float* vertices = new float[mesh->mNumVertices * 8];
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
 			if (mesh->mVertices[i].x > maxDistance[0])
 				maxDistance[0] = mesh->mVertices[i].x;
@@ -120,21 +120,25 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 			if (mesh->mVertices[i].z < minDistance[2])
 				minDistance[2] = mesh->mVertices[i].z;
 
-			vertices[i * 5] = mesh->mVertices[i].x;
-			vertices[i * 5 + 1] = mesh->mVertices[i].y;
-			vertices[i * 5 + 2] = mesh->mVertices[i].z;
+			vertices[i * 8] = mesh->mVertices[i].x;
+			vertices[i * 8 + 1] = mesh->mVertices[i].y;
+			vertices[i * 8 + 2] = mesh->mVertices[i].z;
+
+			vertices[i * 8 + 3] = mesh->mNormals->x;
+			vertices[i * 8 + 4] = mesh->mNormals->y;
+			vertices[i * 8 + 5] = mesh->mNormals->z;
 
 			if (mesh->mTextureCoords[0] != nullptr) {
-				vertices[i * 5 + 3] = mesh->mTextureCoords[0][i].x;
-				vertices[i * 5 + 4] = mesh->mTextureCoords[0][i].y;
+				vertices[i * 8 + 6] = mesh->mTextureCoords[0][i].x;
+				vertices[i * 8 + 7] = mesh->mTextureCoords[0][i].y;
 			} else {
-				vertices[i * 5 + 3] = 0.0f;
-				vertices[i * 5 + 4] = 0.0f;
+				vertices[i * 8 + 6] = 0.0f;
+				vertices[i * 8 + 7] = 0.0f;
 				LogW("Null texture coords");
 			}
 		}
 
-		LogD(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
+		//LogD(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
 		collider.Get()->SetBox(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
 		unsigned int* indices = new unsigned int[mesh->mNumFaces * 3];
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
@@ -143,14 +147,14 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 			indices[i * 3 + 2] = mesh->mFaces[i].mIndices[2];
 		}
 
-		renderer->AssignMesh(Mesh(vertices, mesh->mNumVertices * 5, indices, mesh->mNumFaces * 3));
+		renderer->AssignMesh(Mesh(vertices, mesh->mNumVertices * 8, indices, mesh->mNumFaces * 3));
 		if (mesh->mMaterialIndex >= 0) {
 			aiMaterial* material = AiScene->mMaterials[mesh->mMaterialIndex];
 			if (material->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
 				aiString textPath;
 				material->GetTexture(aiTextureType_DIFFUSE, 0, &textPath);
 				std::string truePath = textPath.C_Str();
-				renderer->AssignTexture(Directory + "/" + truePath);
+				renderer->CurrentMat.AssignTexture(Directory + "/" + truePath);
 			}
 		}
 

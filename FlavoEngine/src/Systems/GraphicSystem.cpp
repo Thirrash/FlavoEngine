@@ -33,8 +33,8 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 
 		MeshRenderer* renderer = rendererHandle.Get();
 		Transform* transform = transformHandle.Get();
-		SetTransform(transform, renderer->ShaderProgram);
-		RenderMesh(renderer->VAOIndex, renderer->ShaderProgram, renderer->TextureIndex, renderer->CurrentMesh.NoIndices);
+		SetTransform(transform, renderer->CurrentMat.ShaderProgram);
+		RenderMesh(renderer->VAOIndex, renderer->CurrentMat.ShaderProgram, renderer->CurrentMat.TextureIndex, renderer->CurrentMesh.NoIndices);
 	}
 }
 
@@ -55,10 +55,13 @@ void Engine::GraphicSystem::SetTransform(Transform* Trans, int ShaderProgram) {
 	camera->PerspectiveMatrix = projection;
 
 	//WVP matrix
-	glm::mat4 WVP = projection * view * Trans->World;
 	glUseProgram(ShaderProgram);
-	GLuint wvpLoc = glGetUniformLocation(ShaderProgram, "WorldViewProjection");
-	glUniformMatrix4fv(wvpLoc, 1, GL_FALSE, &WVP[0][0]);
+	GLuint projLoc = glGetUniformLocation(ShaderProgram, "Projection");
+	glUniformMatrix4fv(projLoc, 1, GL_FALSE, &projection[0][0]);
+	GLuint viewLoc = glGetUniformLocation(ShaderProgram, "View");
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
+	GLuint worldLoc = glGetUniformLocation(ShaderProgram, "World");
+	glUniformMatrix4fv(worldLoc, 1, GL_FALSE, &Trans->World[0][0]);
 }
 
 void Engine::GraphicSystem::RenderMesh(unsigned int VAOIndex, int ShaderProgram, unsigned int TextureIndex, unsigned int NoIndices) {
