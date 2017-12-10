@@ -7,7 +7,7 @@ Engine::Material::Material() {
 	ShaderProgram = Framework::FUtils::CompileShader("../../Resources/Shaders/DefaultShader.vert", "../../Resources/Shaders/DefaultShader.frag");
 	TextureIndex = 0;
 	ChangeColor(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
-	ChangeProperties(glm::vec3(0.8f, 0.8f, 0.8f), glm::vec3(0.18f, 0.18f, 0.18f), glm::vec3(0.9f, 0.9f, 0.9f), 32.0f);
+	ChangeProperties(glm::vec3(0.8f, 0.8f, 0.8f), glm::vec3(0.18f, 0.18f, 0.18f), glm::vec3(0.9f, 0.9f, 0.9f), 50.0f);
 }
 
 Engine::Material::~Material() {

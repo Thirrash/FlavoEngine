@@ -17,7 +17,12 @@ namespace Engine
 		/*** Fields ***/
 	public:
 		glm::vec3 Color;
+		float Intensity;
+		bool bIsDirty;
 
 		/*** Methods ***/
+	public:
+		void SetColor(glm::vec3 NewColor) { Color = NewColor; glm::normalize(Color); bIsDirty = true; }
+		void SetIntensity(float NewIntensity) { Intensity = NewIntensity; bIsDirty = true; }
 	};
 }

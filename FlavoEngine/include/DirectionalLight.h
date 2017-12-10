@@ -17,5 +17,7 @@ namespace Engine
 		glm::vec3 Direction;
 
 		/*** Methods ***/
+	public:
+		void SetDirection(glm::vec3 NewDirection);
 	};
 }

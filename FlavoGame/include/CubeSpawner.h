@@ -18,9 +18,10 @@ public:
 
 	/*** Fields ***/
 private:
-	float* Vertices;
-	unsigned int* Indices;
-	std::vector<SceneObjectHandle> Cubes;
+	std::vector<SceneObjectHandle> Point;
+	SceneObjectHandle Dir;
+	SceneObjectHandle Spot;
+
 	float StartTime;
 	MouseInput LastInput;
 
@@ -33,5 +34,5 @@ public:
 	void receive(const MouseInput& Input);
 
 private:
-	SceneObjectHandle CreateCube(glm::vec3 pos, std::string texturePath);
+	SceneObjectHandle CreatePointLight(glm::vec3 pos, glm::vec3 color, float intensity, std::string texturePath);
 };
