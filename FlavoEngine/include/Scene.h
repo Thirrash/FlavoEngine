@@ -29,11 +29,13 @@ namespace Engine
 	public:
 		SceneObjectHandle Instantiate();
 		SceneObjectHandle Instantiate(std::string ModelPath);
+		SceneObjectHandle InstantiateEnviro(std::string ModelPath);
 		bool Destroy(SceneObjectHandle Object);
 		EventManager& GetEventManager();
 		void ChangeParent(ComponentHandle<Transform> Parent, ComponentHandle<Transform> Child);
 
 	private:
 		void ProcessModelNode(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory);
+		void ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory);
 	};
 }

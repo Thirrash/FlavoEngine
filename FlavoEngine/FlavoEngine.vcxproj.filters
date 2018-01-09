@@ -810,6 +810,12 @@
     <ClInclude Include="include\Skybox.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\EnviroMeshRenderer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EnviroMaterial.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\OpenGL\gl3w.c">
@@ -948,6 +954,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Skybox.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnviroMeshRenderer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EnviroMaterial.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

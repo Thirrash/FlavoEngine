@@ -87,6 +87,9 @@ void CubeSpawner::Start() {
 	SceneObjectHandle imported = SceneManager::GetCurrent()->Instantiate("../../Resources/Models/Totem.FBX");
 	//Material& mat = imported.Get()->Get<MeshRenderer>().Get()->CurrentMat;
 	//mat.ChangeProperties(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(0.0f, 1.0f, 0.0f), 100.0f);
+
+	//Enviro-mapping
+	SceneObjectHandle enviro = SceneManager::GetCurrent()->InstantiateEnviro("../../Resources/Models/TotemEnviro.FBX");
 }
 
 void CubeSpawner::Update(double DeltaTime) {

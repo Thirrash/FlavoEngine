@@ -39,6 +39,8 @@
     <ClInclude Include="include\entityx\quick.h" />
     <ClInclude Include="include\entityx\System.h" />
     <ClInclude Include="include\entityx\tags\TagsComponent.h" />
+    <ClInclude Include="include\EnviroMaterial.h" />
+    <ClInclude Include="include\EnviroMeshRenderer.h" />
     <ClInclude Include="include\Framework\FDraw.h" />
     <ClInclude Include="include\Framework\FUtils.h" />
     <ClInclude Include="include\Framework\FWindow.h" />
@@ -275,6 +277,8 @@
     <ClCompile Include="src\entityx\help\Pool.cc" />
     <ClCompile Include="src\entityx\help\Timer.cc" />
     <ClCompile Include="src\entityx\System.cc" />
+    <ClCompile Include="src\EnviroMaterial.cpp" />
+    <ClCompile Include="src\EnviroMeshRenderer.cpp" />
     <ClCompile Include="src\Framework\FDraw.cpp" />
     <ClCompile Include="src\Framework\FUtils.cpp" />
     <ClCompile Include="src\Framework\FWindow.cpp" />

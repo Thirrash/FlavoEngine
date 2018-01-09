@@ -5,6 +5,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Transform.h"
 #include "MeshRenderer.h"
+#include "EnviroMeshRenderer.h"
 #include "Debug.h"
 #include "Color.h"
 #include "Framework/FDraw.h"
@@ -89,6 +90,22 @@ void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, Time
 			SetPointLight(renderer->CurrentMat.ShaderProgram, pointLights[i], i);
 		}
 		RenderMesh(renderer->VAOIndex, renderer->CurrentMat.ShaderProgram, renderer->CurrentMat.TextureIndex, renderer->CurrentMesh.NoIndices);
+	}
+
+
+	ComponentHandle<EnviroMeshRenderer> enviroRendererHandle;
+	for (Entity entity : es.entities_with_components(transformHandle, enviroRendererHandle)) {
+		if (!transformHandle.IsValid() || !enviroRendererHandle.IsValid()) {
+			LogW("Handle not valid for: ", entity.id().id());
+			continue;
+		}
+
+		EnviroMeshRenderer* renderer = enviroRendererHandle.Get();
+		Transform* transform = transformHandle.Get();
+
+		glUseProgram(renderer->CurrentMat.ShaderProgram);
+		SetTransform(transform, renderer->CurrentMat.ShaderProgram);
+		RenderMesh(renderer->VAOIndex, renderer->CurrentMat.ShaderProgram, skybox_.textureId_, renderer->CurrentMesh.NoIndices);
 	}
 }
 
