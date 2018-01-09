@@ -807,6 +807,9 @@
     <ClInclude Include="include\SpotLight.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Skybox.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\OpenGL\gl3w.c">
@@ -942,6 +945,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\SpotLight.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Skybox.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

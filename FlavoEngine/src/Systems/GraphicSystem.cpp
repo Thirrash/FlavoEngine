@@ -26,6 +26,34 @@ Engine::GraphicSystem::~GraphicSystem() {
 }
 
 void Engine::GraphicSystem::Update(EntityManager& es, EventManager& events, TimeDelta dt) {
+	glDepthMask(GL_FALSE);
+	glUseProgram(skybox_.shaderIndex);
+
+	//View matrix
+	Camera* camera = SceneManager::GetCurrent()->MainCamera.Get()->Get<Camera>().Get();
+	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
+	glm::vec3 eye = cameraTransform->Position;
+	glm::vec3 dir = glm::normalize(cameraTransform->Forward);
+	glm::vec3 up(0.0f, 1.0f, 0.0f);
+	glm::mat4 view = glm::lookAt(eye, eye + dir, up);
+	view = glm::mat4(glm::mat3(view));
+
+	//Projection matrix
+	int w, h;
+	glfwGetWindowSize(glfwGetCurrentContext(), &w, &h);
+	glm::mat4 projection = glm::perspective(45.0f, (float)w / (float)h, 0.001f, 50.0f);
+
+	//WVP matrix
+	GLuint projLoc = glGetUniformLocation(skybox_.shaderIndex, "projection");
+	glUniformMatrix4fv(projLoc, 1, GL_FALSE, &projection[0][0]);
+	GLuint viewLoc = glGetUniformLocation(skybox_.shaderIndex, "view");
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
+
+	glBindVertexArray(skybox_.vaoIndex_);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, skybox_.textureId_);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glDepthMask(GL_TRUE);
+
 	ComponentHandle<DirectionalLight> dirHandle;
 	for (Entity entity : es.entities_with_components(dirHandle)) {
 		break;

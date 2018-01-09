@@ -4,6 +4,7 @@
 #include "MeshRenderer.h"
 #include "Debug.h"
 #include <OpenGL/assimp/Importer.hpp>
+#include <experimental/filesystem>
 #include <OpenGL/assimp/postprocess.h>
 #include <queue>
 #include "BoxCollider.h"

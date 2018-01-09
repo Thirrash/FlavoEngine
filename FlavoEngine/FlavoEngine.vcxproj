@@ -247,6 +247,7 @@
     <ClInclude Include="include\SceneManager.h" />
     <ClInclude Include="include\SceneObject.h" />
     <ClInclude Include="include\SceneObjectHandle.h" />
+    <ClInclude Include="include\Skybox.h" />
     <ClInclude Include="include\SphereCollider.h" />
     <ClInclude Include="include\SpotLight.h" />
     <ClInclude Include="include\Systems\CollisionSystem.h" />
@@ -294,6 +295,7 @@
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\SceneObject.cpp" />
     <ClCompile Include="src\SceneObjectHandle.cpp" />
+    <ClCompile Include="src\Skybox.cpp" />
     <ClCompile Include="src\SphereCollider.cpp" />
     <ClCompile Include="src\SpotLight.cpp" />
     <ClCompile Include="src\Systems\CollisionSystem.cpp" />
@@ -432,7 +434,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7A686138-C783-4AE7-986A-68BA2B66B849}</ProjectGuid>
     <RootNamespace>FlavoEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectName>FlavoEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

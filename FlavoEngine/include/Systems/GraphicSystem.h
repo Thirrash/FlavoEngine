@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EntityX.h"
+#include "Skybox.h"
 
 class GLFWwindow;
 
@@ -34,5 +35,8 @@ namespace Engine
 		void SetDirectionalLight(int ShdaerProgram, DirectionalLight* Light);
 		void SetPointLight(int ShaderProgram, PointLight* Light, int Index);
 		void SetSpotLight(int ShaderProgram, SpotLight* Light);
+
+	private:
+		Skybox skybox_;
 	};
 }

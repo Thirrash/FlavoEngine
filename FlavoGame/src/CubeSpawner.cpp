@@ -37,6 +37,7 @@ void CubeSpawner::receive(const MouseInput& Input) {
 
 SceneObjectHandle CubeSpawner::CreatePointLight(glm::vec3 pos, glm::vec3 color, float intensity, std::string texturePath) {
 	SceneObjectHandle obj = SceneManager::GetCurrent()->Instantiate("../../Resources/Models/Cube.FBX");
+
 	ComponentHandle<Transform> trans = obj.Get()->Get<Transform>();
 	trans.Get()->SetLocalPosition(pos);
 	trans.Get()->SetLocalScale(trans.Get()->LocalScale);
