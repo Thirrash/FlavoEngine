@@ -245,6 +245,7 @@
     <ClInclude Include="include\OpenGL\KHR\khrplatform.h" />
     <ClInclude Include="include\OpenGL\stb_image.h" />
     <ClInclude Include="include\PointLight.h" />
+    <ClInclude Include="include\Postprocess.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\SceneManager.h" />
     <ClInclude Include="include\SceneObject.h" />
@@ -295,6 +296,7 @@
     <ClCompile Include="src\MeshRenderer.cpp" />
     <ClCompile Include="src\OpenGL\glad.c" />
     <ClCompile Include="src\PointLight.cpp" />
+    <ClCompile Include="src\Postprocess.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\SceneObject.cpp" />

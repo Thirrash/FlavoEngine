@@ -816,6 +816,9 @@
     <ClInclude Include="include\EnviroMaterial.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\Postprocess.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\OpenGL\gl3w.c">
@@ -960,6 +963,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\EnviroMaterial.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Postprocess.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

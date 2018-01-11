@@ -8,6 +8,7 @@ out vec4 FragColor;
 
 uniform sampler2D Texture;
 uniform vec3 ViewPos;
+uniform float hdrToggle;
 
 struct MaterialProperties {
 	vec4 ObjectColor;
@@ -101,11 +102,22 @@ uniform PointLight PointLights[MAX_NO_POINT_LIGHTS];
 uniform SpotLight Spot;
 
 void main() {
-	vec3 val = clamp(CalcDirLight(DirLight, MatProp, normalize(Normal), normalize(ViewPos - FragPos)), 0.0, 1.0);
-	for(int i = 0; i < 4; i++)
-		val += clamp(CalcPointLight(PointLights[i], MatProp, normalize(Normal), FragPos, normalize(ViewPos - FragPos)), 0.0, 1.0); 
-	val += clamp(CalcSpotLight(Spot, MatProp, normalize(Normal), FragPos, normalize(ViewPos - FragPos)), 0.0, 1.0); 
+	const float gamma = 1.0;
+	const float exposure = 1.0;
 	
-    FragColor = MatProp.ObjectColor * vec4(clamp(val, 0.0, 1.0), 1.0);
+	vec3 val = CalcDirLight(DirLight, MatProp, normalize(Normal), normalize(ViewPos - FragPos));
+	for(int i = 0; i < 4; i++)
+		val += CalcPointLight(PointLights[i], MatProp, normalize(Normal), FragPos, normalize(ViewPos - FragPos)); 
+	val += CalcSpotLight(Spot, MatProp, normalize(Normal), FragPos, normalize(ViewPos - FragPos)); 
+	
+	vec3 hdrMapped = vec3(0.0);
+	if (hdrToggle > 0.01) {
+		hdrMapped = vec3(1.0) - exp(-val * exposure);
+		hdrMapped = pow(hdrMapped, vec3(1.0 / gamma));
+	} else {
+		hdrMapped = val;
+	}
+
+    FragColor = MatProp.ObjectColor * vec4(hdrMapped, 1.0);
 }
 

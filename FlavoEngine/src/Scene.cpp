@@ -93,7 +93,8 @@ void Engine::Scene::ChangeParent(ComponentHandle<Transform> Parent, ComponentHan
 	parent->Children.insert(std::pair<Entity, ComponentHandle<Transform>>(child->AssignedTo->Id, Child));
 }
 
-void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory) {
+void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory, glm::vec3 rootTransform) {
+	glm::vec3 passedTransform = rootTransform;
 	SceneObjectHandle handle;
 	if (Node->mNumMeshes > 0) {
 		aiMesh* mesh = AiScene->mMeshes[Node->mMeshes[0]];
@@ -110,7 +111,8 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 		if (Parent.IsValid())
 			scalev = glm::vec3(scale.x, scale.y, scale.z) * Parent.Get()->Get<Transform>().Get()->Scale;
 
-		transform.Get()->SetLocalPosition(glm::vec3(pos.x, pos.y, pos.z));
+		transform.Get()->SetLocalPosition(glm::vec3(pos.x, pos.y, pos.z) + passedTransform);
+		LogA(Node->mName.C_Str(), transform.Get()->LocalPosition.x, transform.Get()->LocalPosition.y, transform.Get()->LocalPosition.z);
 		transform.Get()->SetLocalRotation(glm::quat(rot.x, rot.y, rot.z, rot.w));
 		transform.Get()->SetLocalScale(glm::vec3(scale.x, scale.y, scale.z));
 		LogB(Node->mName.C_Str(), pos.x, pos.y, pos.z, scale.x, scale.y, scale.z);
@@ -181,15 +183,22 @@ void Engine::Scene::ProcessModelNode(aiNode* Node, const aiScene* AiScene, Scene
 
 		if (!RootObject.IsValid())
 			RootObject = handle;
+	} else {
+		aiVector3D tmpPos, tmpScale;
+		aiQuaternion tmpRot;
+		Node->mTransformation.Decompose(tmpScale, tmpRot, tmpPos);
+		if (tmpPos.x != 0.0f && tmpPos.y != 0.0f && tmpPos.z != 0.0f)
+			passedTransform = glm::vec3(tmpPos.x, tmpPos.y, tmpPos.z);
 	}
 
 	LogB("Loaded mesh. NoChildrens: ", Node->mNumChildren);
 	for (unsigned int i = 0; i < Node->mNumChildren; i++) {
-		ProcessModelNode(Node->mChildren[i], AiScene, RootObject, handle, Directory);
+		ProcessModelNode(Node->mChildren[i], AiScene, RootObject, handle, Directory, passedTransform);
 	}
 }
 
-void Engine::Scene::ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory) {
+void Engine::Scene::ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory, glm::vec3 rootTransform) {
+	glm::vec3 passedTransform = rootTransform;
 	SceneObjectHandle handle;
 	if (Node->mNumMeshes > 0) {
 		aiMesh* mesh = AiScene->mMeshes[Node->mMeshes[0]];
@@ -206,13 +215,12 @@ void Engine::Scene::ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene,
 		if (Parent.IsValid())
 			scalev = glm::vec3(scale.x, scale.y, scale.z) * Parent.Get()->Get<Transform>().Get()->Scale;
 
-		transform.Get()->SetLocalPosition(glm::vec3(pos.x, pos.y, pos.z));
+		transform.Get()->SetLocalPosition(glm::vec3(pos.x, pos.y, pos.z) + passedTransform);
 		transform.Get()->SetLocalRotation(glm::quat(rot.x, rot.y, rot.z, rot.w));
 		transform.Get()->SetLocalScale(glm::vec3(scale.x, scale.y, scale.z));
-		LogB(Node->mName.C_Str(), pos.x, pos.y, pos.z, scale.x, scale.y, scale.z);
 
 		ComponentHandle<EnviroMeshRenderer> renderer = handle.Get()->Add<EnviroMeshRenderer>();
-		ComponentHandle<BoxCollider> collider = handle.Get()->Add<BoxCollider>();
+		//ComponentHandle<BoxCollider> collider = handle.Get()->Add<BoxCollider>();
 
 		float maxDistance[3]{ -9999999.9f, -9999999.9f , -9999999.9f };
 		float minDistance[3]{ 9999999.9f, 9999999.9f , 9999999.9f };
@@ -251,7 +259,7 @@ void Engine::Scene::ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene,
 		}
 
 		//LogD(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
-		collider.Get()->SetBox(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
+		//collider.Get()->SetBox(minDistance[0] * scale.x * scalev.x, maxDistance[0] * scale.x * scalev.x, minDistance[1] * scale.x * scalev.x, maxDistance[1] * scale.x * scalev.x, minDistance[2] * scale.x * scalev.x, maxDistance[2] * scale.x * scalev.x);
 		unsigned int* indices = new unsigned int[mesh->mNumFaces * 3];
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
 			indices[i * 3] = mesh->mFaces[i].mIndices[0];
@@ -277,10 +285,17 @@ void Engine::Scene::ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene,
 
 		if (!RootObject.IsValid())
 			RootObject = handle;
+	} else {
+		aiVector3D tmpPos, tmpScale;
+		aiQuaternion tmpRot;
+		Node->mTransformation.Decompose(tmpScale, tmpRot, tmpPos);
+		LogW("parnet", tmpPos.x, tmpPos.y, tmpPos.z);
+		if (tmpPos.x != 0.0f && tmpPos.y != 0.0f && tmpPos.z != 0.0f)
+			passedTransform = glm::vec3(tmpPos.x, tmpPos.y, tmpPos.z);
 	}
 
 	LogB("Loaded mesh. NoChildrens: ", Node->mNumChildren);
 	for (unsigned int i = 0; i < Node->mNumChildren; i++) {
-		ProcessModelNodeEnviro(Node->mChildren[i], AiScene, RootObject, handle, Directory);
+		ProcessModelNodeEnviro(Node->mChildren[i], AiScene, RootObject, handle, Directory, passedTransform);
 	}
 }

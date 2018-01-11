@@ -35,7 +35,7 @@ namespace Engine
 		void ChangeParent(ComponentHandle<Transform> Parent, ComponentHandle<Transform> Child);
 
 	private:
-		void ProcessModelNode(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory);
-		void ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory);
+		void ProcessModelNode(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory, glm::vec3 rootTransform = glm::vec3());
+		void ProcessModelNodeEnviro(aiNode* Node, const aiScene* AiScene, SceneObjectHandle& RootObject, SceneObjectHandle& Parent, std::string Directory, glm::vec3 rootTransform = glm::vec3());
 	};
 }

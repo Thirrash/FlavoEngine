@@ -6,12 +6,12 @@
 
 Skybox::Skybox() {
 	std::vector<std::string> faces {
-		"../../Resources/Skybox/Right.jpg",
 		"../../Resources/Skybox/Left.jpg",
-		"../../Resources/Skybox/Top.jpg",
+		"../../Resources/Skybox/Right.jpg",
 		"../../Resources/Skybox/Bottom.jpg",
-		"../../Resources/Skybox/Back.jpg",
-		"../../Resources/Skybox/Front.jpg"
+		"../../Resources/Skybox/Top.jpg",
+		"../../Resources/Skybox/Front.jpg",
+		"../../Resources/Skybox/Back.jpg"
 	};
 	
 	textureId_ = LoadCubemap(faces);

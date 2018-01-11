@@ -22,7 +22,7 @@ namespace Engine
 
 		/*** Methods ***/
 	public:
-		void SetColor(glm::vec3 NewColor) { Color = NewColor; glm::normalize(Color); bIsDirty = true; }
+		void SetColor(glm::vec3 NewColor) { Color = NewColor;  bIsDirty = true; }
 		void SetIntensity(float NewIntensity) { Intensity = NewIntensity; bIsDirty = true; }
 	};
 }

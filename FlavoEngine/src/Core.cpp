@@ -41,6 +41,8 @@ int Engine::Core::StartGame() {
 	SystemUpdate<TransformSystem> transformSystem(new TransformSystem(), 1.0 / MAX_FRAMERATE);
 	SystemUpdate<CollisionSystem> collisionSystem(new CollisionSystem(), 1.0 / MAX_FRAMERATE);
 
+	graphicSystem.configure(currentScene->GetEventManager());
+
 	int count = 0;
 	while (!FUtils::CheckGameLoopClose()) {
 		double newTime = FUtils::GetTime();

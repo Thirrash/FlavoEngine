@@ -97,8 +97,10 @@ void CubeSpawner::Update(double DeltaTime) {
 	float trueDelta = (currentTime - StartTime);
 
 	Point[0].Get()->Get<Transform>().Get()->SetLocalPosition(glm::vec3(glm::sin(trueDelta) * 0.32f, 2.0f, glm::cos(trueDelta) * 0.32f));
-	Point[0].Get()->Get<PointLight>().Get()->SetColor(glm::vec3(glm::sin(trueDelta * 0.4f), 0.0f, glm::cos(trueDelta * 0.4f)));
-	Point[0].Get()->Get<PointLight>().Get()->SetIntensity(glm::sin(trueDelta) + 2.0f);
+
+	Point[0].Get()->Get<PointLight>().Get()->SetColor(glm::vec3(1.0f, 1.0f, 1.0f));
+	//Point[0].Get()->Get<PointLight>().Get()->SetColor(glm::vec3(glm::sin(trueDelta * 0.4f) + 0.2f, 0.0f, glm::cos(trueDelta * 0.4f) + 0.4f));
+	Point[0].Get()->Get<PointLight>().Get()->SetIntensity(glm::sin(trueDelta) + 30.0f);
 
 	Transform* cameraTransform = SceneManager::GetCurrent()->MainCamera.Get()->Get<Transform>().Get();
 	float cameraSpeed = 4.0f * DeltaTime;
